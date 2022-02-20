@@ -7,12 +7,13 @@ class Solution:
         unique = 0
 
         for element in nums:
-            if element != previous:
-                unique += 1
-            elif previous == None:
+            if element != previous and previous != None:
                 previous = element
                 nums[unique] = element
                 unique += 1
+            elif previous == None:
+                unique += 1
+                previous = element
 
         return unique
 
