@@ -3,19 +3,12 @@ from typing import List
 
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        hash = {}
-        response = []
-
-        for key, num in enumerate(nums1):
-            hash[num] = (hash[num] if num in hash else 0) + 1
-
-        for key, num in enumerate(nums2):
-            if num in hash and hash[num] > 0:
-                response.append(num)
-                hash[num] -= 1
-
-
-        return response
+        res = []
+        for i in nums1:
+            if i in nums2:
+                res.append(i)
+                nums2.pop(nums2.index(i))
+        return res
 
 
 
