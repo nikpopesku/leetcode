@@ -4,16 +4,9 @@ from treenode import TreeNode
 
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        response = []
-
-        if root and root.left:
-            response += self.inorderTraversal(root.left)
-
-        if root:
-            response += [root.val]
-
-        if root and root.right:
-            response += self.inorderTraversal(root.right)
+        response = self.inorderTraversal(root.left) if root and root.left else []
+        response += [root.val] if root else []
+        response += self.inorderTraversal(root.right) if root and root.right else []
 
         return response
 
