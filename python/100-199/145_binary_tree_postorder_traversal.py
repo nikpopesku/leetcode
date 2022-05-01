@@ -3,16 +3,9 @@ from treenode import TreeNode
 
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        response = []
-
-        if root:
-            response += [root.val]
-
-            if root.left:
-                response += self.postorderTraversal(root.left)
-
-            if root.right:
-                response += self.postorderTraversal(root.right)
+        response = self.postorderTraversal(root.left) if root and root.left else []
+        response += self.postorderTraversal(root.right) if root and root.right else []
+        response += [root.val] if root else []
 
         return response
 
