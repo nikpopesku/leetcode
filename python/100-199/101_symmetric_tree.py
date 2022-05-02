@@ -17,14 +17,18 @@ class Solution:
         elif not root.left and not root.right:
             return True
 
-        return self.postorderTraversal(root.left) == self.postorderTraversal(root.right)
+        return self.postorderTraversal(root.left) == reversed(self.postorderTraversal(root.right))
 
 
-root = TreeNode(3)
-root.left = TreeNode(9)
-root.right = TreeNode(20)
-root.right.left = TreeNode(15)
-root.right.right = TreeNode(7)
+root = TreeNode(1)
+second_left = TreeNode(2)
+second_right = TreeNode(2)
+root.left = second_left
+root.right = second_right
+second_left.left = TreeNode(3)
+second_left.right = TreeNode(4)
+second_right.left = TreeNode(4)
+second_right.right = TreeNode(3)
 
 solution = Solution()
 print(solution.isSymmetric(root = root))
