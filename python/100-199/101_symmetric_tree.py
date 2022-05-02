@@ -2,10 +2,10 @@ from typing import Optional, List
 from treenode import TreeNode
 
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        response = self.postorderTraversal(root.left) if root and root.left else []
-        response += self.postorderTraversal(root.right) if root and root.right else []
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        response = self.inorderTraversal(root.left) if root and root.left else []
         response += [root.val] if root else []
+        response += self.inorderTraversal(root.right) if root and root.right else []
 
         return response
 
@@ -17,7 +17,7 @@ class Solution:
         elif not root.left and not root.right:
             return True
 
-        return self.postorderTraversal(root.left) == reversed(self.postorderTraversal(root.right))
+        return self.inorderTraversal(root.left) == list(reversed(self.inorderTraversal(root.right)))
 
 
 root = TreeNode(1)
