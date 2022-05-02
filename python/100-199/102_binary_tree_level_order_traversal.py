@@ -15,7 +15,8 @@ class Solution:
             i = 0
 
             while i < n:
-                element = queue.pop(0)
+                element = queue[0]
+                queue = queue[1:]
 
                 if element:
                     subarray.append(element.val)
