@@ -28,6 +28,7 @@ class Solution:
         if parent.val < val:
             parent.right = TreeNode(val)
 
+        return root
 
 
 r1 = TreeNode(18, TreeNode(2), TreeNode(22, None, TreeNode(63, None, TreeNode(84))))
