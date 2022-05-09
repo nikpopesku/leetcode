@@ -13,8 +13,8 @@ class Solution:
         while len(stack) != 0:
             element = stack.pop(0)
             i, j = [int(k) for k in element.split('_')]
-            if image[i][j] == currentColor:
-                image[i][j] = newColor
+            image[i][j] = newColor
+
             if j >= 1 and str(i) + '_' + str(j - 1) not in hash and image[i][j-1] == currentColor:
                 stack.append(str(i) + '_' + str(j - 1))
                 hash[str(i) + '_' + str(j - 1)] = True
