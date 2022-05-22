@@ -7,34 +7,50 @@ class Solution:
         rows = len(grid)
         cols = len(grid[0])
         matrix = [[float('inf') for col in range(cols)] for row in range(rows)]
+        counter = 0
+        has_infinity = True
 
-        for i in range(rows):
-            for j in range(cols):
-                if grid[i][j] == 0:
-                    matrix[i][j] = None
-                elif grid[i][j] == 2:
-                    matrix[i][j] = 0
-                else:
-                    matrix[i][j] = min(
-                        matrix[i][j],
-                        min(
-                            matrix[i-1][j] if i-1 >= 0 and matrix[i-1][j] is not None else matrix[i][j],
-                            matrix[i][j-1] if j - 1 >= 0 and matrix[i][j-1] is not None else matrix[i][j]
-                        ) + 1
-                    )
+        while has_infinity and counter > 0:
+            counter = 0
+            has_infinity = False
 
-        for i in reversed(range(rows)):
-            for j in reversed(range(cols)):
-                if grid[i][j] == 0 or grid[i][j] == 2:
-                    continue
-                else:
-                    matrix[i][j] = min(
-                        matrix[i][j],
-                        min(
-                            matrix[i+1][j] if i+1 < rows and matrix[i+1][j] is not None else matrix[i][j],
-                            matrix[i][j+1] if j+1 < cols and matrix[i][j+1] is not None else matrix[i][j]
-                        ) + 1
-                    )
+            for i in range(rows):
+                for j in range(cols):
+                    if grid[i][j] == 0:
+                        matrix[i][j] = None
+                    elif grid[i][j] == 2:
+                        matrix[i][j] = 0
+                    else:
+                        temp = min(
+                            matrix[i][j],
+                            min(
+                                matrix[i-1][j] if i-1 >= 0 and matrix[i-1][j] is not None else matrix[i][j],
+                                matrix[i][j-1] if j - 1 >= 0 and matrix[i][j-1] is not None else matrix[i][j]
+                            ) + 1
+                        )
+                        if temp < matrix[i][j]:
+                            counter += 1
+                        elif temp == float('inf'):
+                            has_infinity = True
+                        matrix[i][j] = temp
+
+            for i in reversed(range(rows)):
+                for j in reversed(range(cols)):
+                    if grid[i][j] == 0 or grid[i][j] == 2:
+                        continue
+                    else:
+                        temp = min(
+                            matrix[i][j],
+                            min(
+                                matrix[i+1][j] if i+1 < rows and matrix[i+1][j] is not None else matrix[i][j],
+                                matrix[i][j+1] if j+1 < cols and matrix[i][j+1] is not None else matrix[i][j]
+                            ) + 1
+                        )
+                        if temp < matrix[i][j]:
+                            counter += 1
+                        elif temp == float('inf'):
+                            has_infinity = True
+                        matrix[i][j] = temp
 
         max_time = 0
 
@@ -48,4 +64,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.orangesRotting(grid = [[0]]))
+print(solution.orangesRotting(grid = [[2,0,1,1,1,1,1,1,1,1],[1,0,1,0,0,0,0,0,0,1],[1,0,1,0,1,1,1,1,0,1],[1,0,1,0,1,0,0,1,0,1],[1,0,1,0,1,0,0,1,0,1],[1,0,1,0,1,1,0,1,0,1],[1,0,1,0,0,0,0,1,0,1],[1,0,1,1,1,1,1,1,0,1],[1,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1]]))
