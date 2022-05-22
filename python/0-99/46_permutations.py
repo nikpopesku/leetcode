@@ -12,6 +12,7 @@ class Solution:
                 nums[offset], nums[j] = nums[j], nums[offset]
                 permute_all(j, nums)
                 nums[j], nums[offset] = nums[offset], nums[j]
+                j += 1
 
 
         result = []
