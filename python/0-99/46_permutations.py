@@ -2,32 +2,25 @@ import sys
 from typing import List, Set
 
 class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        numbers = list(range(1, n+1))
-        response = []
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def permute_all(offset, nums):
+            if offset == len(nums) - 1:
+                result.append(nums.copy())
 
-        def combine_recurrent(numbers: List, response: List, temp_solution: Set, places: int):
-            while numbers and places > 0:
-                temp_solution.add(numbers.pop())
-                places -= 1
+            j = offset + 1
+            while j < len(nums):
+                nums[offset], nums[j] = nums[j], nums[offset]
+                permute_all(j, nums)
+                nums[j], nums[offset] = nums[offset], nums[j]
 
-                return combine_recurrent(numbers, response, temp_solution, places)
 
-            if temp_solution not in response:
-                response.append(temp_solution.copy())
-
-            if numbers:
-                temp_solution.pop()
-                places += 1
-                return combine_recurrent(numbers, response, temp_solution, places)
-
-            return response
-
-        return [list(i) for i in combine_recurrent(numbers, response, set(), k)]
+        result = []
+        permute_all(0, [])
+        return result
 
 
 
 
 
 solution = Solution()
-print(solution.combine(n = 4, k = 2))
+print(solution.permute(nums = [1,2,3]))
