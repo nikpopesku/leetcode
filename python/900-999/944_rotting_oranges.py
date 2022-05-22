@@ -11,11 +11,17 @@ class Solution:
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == 0:
-                    continue
+                    matrix[i][j] = None
                 elif grid[i][j] == 2:
                     matrix[i][j] = 0
                 else:
-                    matrix[i][j] = min(matrix[i][j], min(matrix[i-1][j] if i-1 >= 0 else matrix[i][j], matrix[i][j-1] if j - 1 >= 0 else matrix[i][j]) + 1)
+                    matrix[i][j] = min(
+                        matrix[i][j],
+                        min(
+                            matrix[i-1][j] if i-1 >= 0 and matrix[i-1][j] is not None else matrix[i][j],
+                            matrix[i][j-1] if j - 1 >= 0 and matrix[i][j-1] is not None else matrix[i][j]
+                        ) + 1
+                    )
 
         for i in reversed(range(rows)):
             for j in reversed(range(cols)):
