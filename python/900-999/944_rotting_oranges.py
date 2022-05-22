@@ -36,8 +36,11 @@ class Solution:
                         ) + 1
                     )
 
-        return -1
+        max_time = -1
 
+        for i in range(rows):
+            for j in range(cols):
+                max_time = max(max_time, matrix[i][j] if matrix[i][j] != None else matrix[i][j])
 
 
 
