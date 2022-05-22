@@ -3,19 +3,17 @@ from typing import List, Set
 
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
-        def permute_all(i):
+        def permute_all(i, current_string):
             if i == len(s) - 1:
                 result.append(s)
 
             for j in range(i, len(s)):
-                temp = (s[:i] if i > 0 else '') + s[i].upper() + (s[i+1:] if i+1 < len(s) else '')
-                s[i].upper() if temp.upper() == s[i] else temp.lower()
-                permute_all(i+1)
-                s[j], s[i] = s[i], s[j]
-                j += 1
+                temp = (current_string[:i] if i > 0 else '') + current_string[i].upper() + (current_string[i+1:] if i+1 < len(s) else '')
+                permute_all(i+1, temp)
+                permute_all(i+1, current_string)
 
         result = []
-        permute_all(0)
+        permute_all(0, s)
         return result
 
 
