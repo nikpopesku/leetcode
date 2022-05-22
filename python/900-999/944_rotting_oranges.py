@@ -43,6 +43,9 @@ class Solution:
                 max_time = max(max_time, matrix[i][j] if matrix[i][j] != None else matrix[i][j])
 
 
+        return max_time if max_time != float('inf') else -1
+
+
 
 solution = Solution()
 print(solution.orangesRotting(grid = [[2,1,1],[1,1,0],[0,1,1]]))
