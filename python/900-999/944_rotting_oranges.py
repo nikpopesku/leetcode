@@ -36,7 +36,7 @@ class Solution:
                         ) + 1
                     )
 
-        max_time = -1
+        max_time = 0
 
         for i in range(rows):
             for j in range(cols):
@@ -48,4 +48,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.orangesRotting(grid = [[0,2]]))
+print(solution.orangesRotting(grid = [[0]]))
