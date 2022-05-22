@@ -1,23 +1,28 @@
 import sys
-from typing import List
+from typing import List, Set
 
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         numbers = list(range(1, n+1))
-        response = []
+        response = set()
 
-        def combine_recurrent(numbers: List, response: List, temp_solution: List, k: int):
+        def combine_recurrent(numbers: List, response: Set, temp_solution: List, k: int):
             while numbers and k > 0:
                 temp_solution.append(numbers.pop())
                 k -= 1
 
                 return combine_recurrent(numbers, response, temp_solution, k)
 
-            response.append(temp_solution)
+            if temp_solution not in response:
+                response.add(temp_solution)
+            else:
+                temp_solution.pop()
+                k += 1
+                return combine_recurrent(numbers, response, temp_solution, k)
 
             return response
 
-        return combine_recurrent(numbers, response, [], k)
+        return list(combine_recurrent(numbers, response, [], k))
 
 
 
