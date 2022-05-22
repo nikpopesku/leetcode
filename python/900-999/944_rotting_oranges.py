@@ -6,7 +6,7 @@ class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0])
-        matrix = [[float('inf')] * cols] * rows
+        matrix = [[float('inf') for col in range(cols)] for row in range(rows)]
 
         for i in range(rows):
             for j in range(cols):
