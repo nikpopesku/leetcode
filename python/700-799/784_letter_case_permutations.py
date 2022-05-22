@@ -7,9 +7,9 @@ class Solution:
             if i == len(s) - 1:
                 result.append(s)
 
-            j = i
-            while j < len(s):
-                s[i], s[j] = s[j], s[i]
+            for j in range(i, len(s)):
+                temp = s[:i] if i > 0 else '' + s[i].upper() + s[i+1:] if i+1 < len(s) else ''
+                s[i].upper() if temp.upper() == s[i] else temp.lower()
                 permute_all(i+1)
                 s[j], s[i] = s[i], s[j]
                 j += 1
