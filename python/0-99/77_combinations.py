@@ -6,19 +6,20 @@ class Solution:
         numbers = list(range(1, n+1))
         response = []
 
-        def combine_recurrent(numbers: List, response: List, temp_solution: Set, k: int):
-            while numbers and k > 0:
+        def combine_recurrent(numbers: List, response: List, temp_solution: Set, places: int):
+            while numbers and places > 0:
                 temp_solution.add(numbers.pop())
-                k -= 1
+                places -= 1
 
-                return combine_recurrent(numbers, response, temp_solution, k)
+                return combine_recurrent(numbers, response, temp_solution, places)
 
             if temp_solution not in response:
-                response.append(temp_solution)
-            else:
+                response.append(temp_solution.copy())
+
+            if numbers:
                 temp_solution.pop()
-                k += 1
-                return combine_recurrent(numbers, response, temp_solution, k)
+                places += 1
+                return combine_recurrent(numbers, response, temp_solution, places)
 
             return response
 
