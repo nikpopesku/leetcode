@@ -8,8 +8,9 @@ class Solution:
                 result.append(current_string)
 
             for j in range(i, len(s)):
-                temp = (current_string[:j] if j > 0 else '') + current_string[j].upper() + (current_string[j+1:] if j+1 < len(s) else '')
-                permute_all(i+1, temp)
+                if current_string[j].lower() >= 'a' and current_string[j].lower() <= 'z':
+                    temp = (current_string[:j] if j > 0 else '') + current_string[j].upper() + (current_string[j+1:] if j+1 < len(s) else '')
+                    permute_all(i+1, temp)
                 permute_all(i+1, current_string)
 
         result = []
