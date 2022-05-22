@@ -8,7 +8,7 @@ class Solution:
 
         def combine_recurrent(numbers: List, response: List, temp_solution: List, k: int):
             while numbers and k > 0:
-                temp_solution = numbers.pop()
+                temp_solution.append(numbers.pop())
                 k -= 1
 
                 return combine_recurrent(numbers, response, temp_solution, k)
