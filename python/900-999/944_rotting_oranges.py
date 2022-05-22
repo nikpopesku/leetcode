@@ -28,7 +28,13 @@ class Solution:
                 if grid[i][j] == 0 or grid[i][j] == 2:
                     continue
                 else:
-                    matrix[i][j] = min(matrix[i][j], min(matrix[i+1][j] if i+1 < rows else matrix[i][j], matrix[i][j+1] if j+1 < cols else matrix[i][j]) + 1)
+                    matrix[i][j] = min(
+                        matrix[i][j],
+                        min(
+                            matrix[i+1][j] if i+1 < rows and matrix[i+1][j] is not None else matrix[i][j],
+                            matrix[i][j+1] if j+1 < cols and matrix[i][j+1] is not None else matrix[i][j]
+                        ) + 1
+                    )
 
         return -1
 
