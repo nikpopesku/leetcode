@@ -15,7 +15,7 @@ class Solution:
                 j += 1
 
         result = []
-        permute_all(0, nums)
+        permute_all(0)
         return result
 
 
