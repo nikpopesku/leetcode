@@ -7,7 +7,7 @@ class Solution:
         rows = len(grid)
         cols = len(grid[0])
         matrix = [[float('inf') for col in range(cols)] for row in range(rows)]
-        counter = 0
+        counter = 1
         has_infinity = True
 
         while has_infinity and counter > 0:
