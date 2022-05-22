@@ -8,11 +8,9 @@ class Solution:
         cols = len(grid[0])
         matrix = [[float('inf') for col in range(cols)] for row in range(rows)]
         counter = 1
-        has_infinity = True
 
-        while has_infinity and counter > 0:
+        while counter > 0:
             counter = 0
-            has_infinity = False
 
             for i in range(rows):
                 for j in range(cols):
@@ -30,8 +28,6 @@ class Solution:
                         )
                         if temp < matrix[i][j]:
                             counter += 1
-                        elif temp == float('inf'):
-                            has_infinity = True
                         matrix[i][j] = temp
 
             for i in reversed(range(rows)):
@@ -48,8 +44,6 @@ class Solution:
                         )
                         if temp < matrix[i][j]:
                             counter += 1
-                        elif temp == float('inf'):
-                            has_infinity = True
                         matrix[i][j] = temp
 
         max_time = 0
