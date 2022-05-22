@@ -4,8 +4,8 @@ from typing import List, Set
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
         def permute_all(i, current_string):
-            if i >= len(s) - 1 and current_string not in result:
-                result.append(current_string)
+            if i == len(s):
+                result.add(current_string)
 
             for j in range(i, len(s)):
                 if current_string[j].lower() >= 'a' and current_string[j].lower() <= 'z':
@@ -15,13 +15,13 @@ class Solution:
                     permute_all(i+1, changed_string)
                 permute_all(i+1, current_string)
 
-        result = []
+        result = set()
         permute_all(0, s)
-        return result
+        return list(result)
 
 
 
 
 
 solution = Solution()
-print(solution.letterCasePermutation(s = "a1b2"))
+print(len(solution.letterCasePermutation(s = "qMKfHUf")))
