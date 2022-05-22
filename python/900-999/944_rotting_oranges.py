@@ -40,7 +40,7 @@ class Solution:
 
         for i in range(rows):
             for j in range(cols):
-                max_time = max(max_time, matrix[i][j] if matrix[i][j] != None else matrix[i][j])
+                max_time = max(max_time, matrix[i][j] if matrix[i][j] != None else max_time)
 
 
         return max_time if max_time != float('inf') else -1
@@ -48,4 +48,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.orangesRotting(grid = [[2,1,1],[1,1,0],[0,1,1]]))
+print(solution.orangesRotting(grid = [[0,2]]))
