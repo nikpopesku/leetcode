@@ -7,10 +7,10 @@ class Solution:
             if i == len(nums) - 1:
                 result.append(nums.copy())
 
-            j = i + 1
+            j = i
             while j < len(nums):
                 nums[i], nums[j] = nums[j], nums[i]
-                permute_all(j)
+                permute_all(i+1)
                 nums[j], nums[i] = nums[i], nums[j]
                 j += 1
 
