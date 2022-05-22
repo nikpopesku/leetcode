@@ -5,10 +5,10 @@ class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
         def permute_all(i, current_string):
             if i == len(s) - 1:
-                result.append(s)
+                result.append(current_string)
 
             for j in range(i, len(s)):
-                temp = (current_string[:i] if i > 0 else '') + current_string[i].upper() + (current_string[i+1:] if i+1 < len(s) else '')
+                temp = (current_string[:j] if j > 0 else '') + current_string[j].upper() + (current_string[j+1:] if j+1 < len(s) else '')
                 permute_all(i+1, temp)
                 permute_all(i+1, current_string)
 
