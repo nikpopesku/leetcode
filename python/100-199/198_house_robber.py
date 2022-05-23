@@ -7,25 +7,20 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         length = len(nums)
 
-        if length - 1 in self.houses:
-            return self.houses[length - 1]
+        if length == 1:
+            return nums[0]
 
-        i = length - 1
+        if length == 2:
+            return nums[0] if nums[0] > nums[1] else nums[1]
 
-        if i == 1:
-            if 1 not in self.houses:
-                self.houses[1] = nums[0] if nums[0] > nums[1] else nums[0]
-            return self.houses[1]
+        self.houses[1] = nums[0]
+        self.houses[2] = nums[0] if nums[0] > nums[1] else nums[1]
 
-        if i == 0:
-            if 0 not in self.houses:
-                self.houses[0] = nums[0]
-            return self.houses[0]
+        for i in range(3, length+1):
+            self.houses[i] = max(self.houses[i-2] + nums[i-1], self.houses[i-1])
 
-        if length - 1 not in self.houses:
-            self.houses[length - 1] = self.rob(nums[:i - 1]) + nums[i] if self.rob(nums[:i - 1]) + nums[i] >= self.rob(nums[:i]) else self.rob(nums[:i])
+        return self.houses[length]
 
-        return self.houses[length - 1]
 
 
 
