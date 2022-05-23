@@ -8,7 +8,7 @@ class Solution:
         3: 3
     }
     def climbStairs(self, n: int) -> int:
-        if self.values[n]:
+        if n in self.values:
             return self.values[n]
 
         self.values[n-2] = self.climbStairs(n-2)
@@ -21,4 +21,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.climbStairs(n = 2))
+print(solution.climbStairs(n = 10))
