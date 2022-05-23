@@ -3,7 +3,20 @@ from typing import List, Set
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        return 4
+        houses = []
+        i = len(nums) - 1
+
+        while i >= 2:
+            if nums[i-2] + nums[i] >= nums[i-1]:
+                houses.append(nums[i])
+                i = i - 2
+            else:
+                i = i - 1
+
+        if i == 1:
+            houses.append(nums[i])
+
+        return sum(houses)
 
 
 
