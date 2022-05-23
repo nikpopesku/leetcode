@@ -5,7 +5,7 @@ class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
         def permute_all(index, current_string: List[str]):
             if index == len_s:
-                result.append(''.join(current_string))
+                result.append(current_string.copy())
 
             if index < len_s:
                 lower = current_string[index].lower()
@@ -17,11 +17,11 @@ class Solution:
         result = []
         len_s = len(s)
         permute_all(0, list(s))
-        return list(result)
+        return [''.join(i) for i in result]
 
 
 
 
 
 solution = Solution()
-print(solution.letterCasePermutation(s = "kQ"))
+print(solution.letterCasePermutation(s = "a"))
