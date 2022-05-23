@@ -5,7 +5,7 @@ class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
         def permute_all(index, current_string: List[str]):
             if index == len_s:
-                result.add(str(current_string))
+                result.add(''.join(current_string))
 
             for j in range(index, len_s):
                 lower = current_string[j].lower()
