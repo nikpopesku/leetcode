@@ -5,16 +5,16 @@ class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
         def permute_all(index, current_string: List[str]):
             if index == len_s:
-                result.add(''.join(current_string))
+                result.append(''.join(current_string))
 
-            for j in range(index, len_s):
-                lower = current_string[j].lower()
-                permute_all(j+1, current_string)
+            if index < len_s:
+                lower = current_string[index].lower()
+                permute_all(index+1, current_string)
                 if 'a' <= lower <= 'z':
-                    current_string[j] = current_string[j].upper() if lower == current_string[j] else lower
-                    permute_all(j+1, current_string)
+                    current_string[index] = current_string[index].upper() if lower == current_string[index] else lower
+                    permute_all(index+1, current_string)
 
-        result = set()
+        result = []
         len_s = len(s)
         permute_all(0, list(s))
         return list(result)
@@ -24,4 +24,4 @@ class Solution:
 
 
 solution = Solution()
-print(len(solution.letterCasePermutation(s = "k5qo0LdW")))
+print(solution.letterCasePermutation(s = "kQ"))
