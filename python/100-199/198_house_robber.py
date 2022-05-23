@@ -7,14 +7,20 @@ class Solution:
         i = len(nums) - 1
 
         while i >= 2:
-            if nums[i-2] + nums[i] >= nums[i-1]:
+            if self.rob(nums[:i-2]) + nums[i] >= self.rob(nums[:i-1]):
                 houses.append(nums[i])
                 i = i - 2
             else:
                 i = i - 1
 
         if i == 1:
-            houses.append(nums[i])
+            if nums[0] > nums[1]:
+                houses.append(nums[0])
+            else:
+                houses.append(nums[1])
+
+        if i == 0:
+            houses.append(nums[0])
 
         return sum(houses)
 
