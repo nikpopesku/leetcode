@@ -2,27 +2,30 @@ import sys
 from typing import List, Set
 
 class Solution:
-    def rob(self, nums: List[int]) -> int:
-        houses = []
-        i = len(nums) - 1
+    houses = {}
 
-        while i >= 2:
-            if self.rob(nums[:i-1]) + nums[i] >= self.rob(nums[:i]):
-                houses.append(nums[i])
-                i = i - 2
-            else:
-                i = i - 1
+    def rob(self, nums: List[int]) -> int:
+        length = len(nums)
+
+        if length - 1 in self.houses:
+            return self.houses[length - 1]
+
+        i = length - 1
 
         if i == 1:
-            if nums[0] > nums[1]:
-                houses.append(nums[0])
-            else:
-                houses.append(nums[1])
+            if 1 not in self.houses:
+                self.houses[1] = nums[0] if nums[0] > nums[1] else nums[0]
+            return self.houses[1]
 
         if i == 0:
-            houses.append(nums[0])
+            if 0 not in self.houses:
+                self.houses[0] = nums[0]
+            return self.houses[0]
 
-        return sum(houses)
+        if length - 1 not in self.houses:
+            self.houses[length - 1] = self.rob(nums[:i - 1]) + nums[i] if self.rob(nums[:i - 1]) + nums[i] >= self.rob(nums[:i]) else self.rob(nums[:i])
+
+        return self.houses[length - 1]
 
 
 
