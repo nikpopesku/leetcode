@@ -2,9 +2,8 @@ import sys
 from typing import List, Set
 
 class Solution:
-    houses = {}
-
     def rob(self, nums: List[int]) -> int:
+        houses = {}
         length = len(nums)
 
         if length == 1:
@@ -13,13 +12,13 @@ class Solution:
         if length == 2:
             return nums[0] if nums[0] > nums[1] else nums[1]
 
-        self.houses[1] = nums[0]
-        self.houses[2] = nums[0] if nums[0] > nums[1] else nums[1]
+        houses[1] = nums[0]
+        houses[2] = nums[0] if nums[0] > nums[1] else nums[1]
 
         for i in range(3, length+1):
-            self.houses[i] = max(self.houses[i-2] + nums[i-1], self.houses[i-1])
+            houses[i] = max(houses[i-2] + nums[i-1], houses[i-1])
 
-        return self.houses[length]
+        return houses[length]
 
 
 
