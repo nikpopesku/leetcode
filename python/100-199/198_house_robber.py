@@ -7,7 +7,7 @@ class Solution:
         i = len(nums) - 1
 
         while i >= 2:
-            if self.rob(nums[:i-2]) + nums[i] >= self.rob(nums[:i-1]):
+            if self.rob(nums[:i-1]) + nums[i] >= self.rob(nums[:i]):
                 houses.append(nums[i])
                 i = i - 2
             else:
