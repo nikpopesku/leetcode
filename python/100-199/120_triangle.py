@@ -25,4 +25,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.minimumTotal(triangle = [[1],[2,3]]))
+print(solution.minimumTotal(triangle = [[-1],[2,3],[1,-1,-3]]))
