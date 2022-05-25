@@ -3,23 +3,18 @@ from typing import List, Set
 
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        nodes = {}
+        nodes = [[None for i in triangle[-1]] for j in range(0, len(triangle))]
         length = len(triangle)
-        last_element = None
 
-        if length == 1:
-            return triangle[0][0]
+        nodes[0][0] = triangle[0][0]
 
-        nodes[0] = triangle[0][0]
-        if length >= 2:
-            nodes[1] = triangle[1][1] if triangle[1][0] > triangle[1][1] else triangle[1][0]
-            last_element = 1 if triangle[1][0] > triangle[1][1] else 0
-
-        for i in range(2, length):
-            nodes[i] = min(triangle[i][last_element], triangle[i][last_element+1])
-            last_element = last_element if triangle[i][last_element] < triangle[i][last_element+1] else last_element + 1
-
-        return sum(nodes.values())
+        for i in range(1, length):
+            for j in range(len(triangle[i-1])+1):
+                nodes[i][j] = (nodes[i-1][j-1] if j >= len(triangle[i-1]) or (j - 1 >= 0 and nodes[i-1][j-1] < nodes[i-1][j]) else nodes[i-1][j]) + triangle[i][j]
+        #     last_element = last_element if triangle[i][last_element] < triangle[i][last_element+1] else last_element + 1
+        #
+        # return sum(nodes.values())
+        return min(nodes[i])
 
 
 
