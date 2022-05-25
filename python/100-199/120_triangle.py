@@ -5,16 +5,15 @@ class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         nodes = {}
         length = len(triangle)
+        last_element = None
 
         if length == 1:
             return triangle[0][0]
 
-        if length == 2:
-            return triangle[1][1] if triangle[1][0] > triangle[1][1] else triangle[1][0]
-
         nodes[0] = triangle[0][0]
-        nodes[1] = triangle[1][1] if triangle[1][0] > triangle[1][1] else triangle[1][0]
-        last_element = 1 if triangle[1][0] > triangle[1][1] else 0
+        if length >= 2:
+            nodes[1] = triangle[1][1] if triangle[1][0] > triangle[1][1] else triangle[1][0]
+            last_element = 1 if triangle[1][0] > triangle[1][1] else 0
 
         for i in range(2, length):
             nodes[i] = min(triangle[i][last_element], triangle[i][last_element+1])
@@ -26,4 +25,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.minimumTotal(triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]))
+print(solution.minimumTotal(triangle = [[1],[2,3]]))
