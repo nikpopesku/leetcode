@@ -11,9 +11,7 @@ class Solution:
         for i in range(1, length):
             for j in range(len(triangle[i-1])+1):
                 nodes[i][j] = (nodes[i-1][j-1] if j >= len(triangle[i-1]) or (j - 1 >= 0 and nodes[i-1][j-1] < nodes[i-1][j]) else nodes[i-1][j]) + triangle[i][j]
-        #     last_element = last_element if triangle[i][last_element] < triangle[i][last_element+1] else last_element + 1
-        #
-        # return sum(nodes.values())
+
         return min(nodes[i])
 
 
