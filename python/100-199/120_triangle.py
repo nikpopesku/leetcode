@@ -12,7 +12,7 @@ class Solution:
             for j in range(len(triangle[i-1])+1):
                 nodes[i][j] = (nodes[i-1][j-1] if j >= len(triangle[i-1]) or (j - 1 >= 0 and nodes[i-1][j-1] < nodes[i-1][j]) else nodes[i-1][j]) + triangle[i][j]
 
-        return min(nodes[i])
+        return min(nodes[-1])
 
 
 
