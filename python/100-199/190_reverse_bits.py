@@ -10,8 +10,8 @@ class Solution:
             response = (response + (n & 1)) << 1
             n = n >> 1
 
-        return response
+        return response + (n & 1)
 
 
 solution = Solution()
-print(bin(solution.reverseBits(n = 3221225471)))
+print(bin(solution.reverseBits(n = int('11111111111111111111111111111101', 2))))
