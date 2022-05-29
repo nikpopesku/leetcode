@@ -1,9 +1,12 @@
-from functools import reduce
 from typing import List
 
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        return reduce(lambda a, b: a ^ b, nums)
+        response = nums[0]
+        for key in range(1, len(nums)):
+            response = response ^ nums[key]
+
+        return response
 
 
 solution = Solution()
