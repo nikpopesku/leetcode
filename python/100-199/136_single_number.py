@@ -7,5 +7,4 @@ class Solution:
 
 
 solution = Solution()
-print(bin(solution.    def singleNumber(self, nums: List[int]) -> int:
-(nums = [2,2,1])))
+print(bin(solution.singleNumber(nums = [2,2,1])))
