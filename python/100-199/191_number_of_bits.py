@@ -13,4 +13,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.hammingWeight(n = 5)
+print(solution.hammingWeight(n = 5))
