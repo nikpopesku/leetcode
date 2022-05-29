@@ -4,9 +4,9 @@ from typing import List
 class Solution:
     def subtractProductAndSum(self, n: int) -> int:
         sum, product = 0, 1
-        while n:
-            digit = n % 10
-            n = n // 10
+        l = list(str(n))
+        while l:
+            digit = int(l.pop())
             product *= digit
             sum += digit
 
