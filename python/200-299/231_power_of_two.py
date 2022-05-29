@@ -10,4 +10,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.isPowerOfTwo(n = 16)
+print(solution.isPowerOfTwo(n = 16))
