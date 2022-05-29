@@ -3,10 +3,14 @@ from typing import List, Set
 
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        return 5
+        count = 0
+        while n:
+            count += n & 1
+            n = n >> 1
 
+        return n
 
 
 
 solution = Solution()
-print(solution.hammingWeight(n = decimal('0b00000000000000000000000000001011')))
+print(solution.hammingWeight(n = 5)
