@@ -7,10 +7,10 @@ class Solution:
         while n:
             temp = n & 1
             n = n >> 1
-            response = (response << 1) + temp
+            response = (response + temp) << 1
 
-        return n
+        return response
 
 
 solution = Solution()
-print(solution.reverseBits(n = 10))
+print(bin(solution.reverseBits(n = 10)))
