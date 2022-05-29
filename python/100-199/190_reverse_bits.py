@@ -5,7 +5,7 @@ class Solution:
     def reverseBits(self, n: int) -> int:
         response = 0
         while n:
-            response = (response + n & 1) << 1
+            response = (response + (n & 1)) << 1
             n = n >> 1
 
         return response
