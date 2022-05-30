@@ -8,10 +8,11 @@ class Solution:
         counter = len(nums) - 1
         candidates = [nums[counter - 2], nums[counter - 1], nums[counter]]
 
-        while not self.check(candidates):
-            candidates.sort()
-            candidates.pop()
-            nums.pop()
+        while not self.check(candidates) and counter >= 2:
+            counter -= 1
+            candidates = [nums[counter - 2], nums[counter - 1], nums[counter]]
+
+        return self.check(candidates)
 
     def check(self, nums: List[int]):
         maximum = max(nums)
@@ -19,4 +20,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.largestPerimeter(nums = [2,1,2]))
+print(solution.largestPerimeter(nums = [2,1,7,8]))
