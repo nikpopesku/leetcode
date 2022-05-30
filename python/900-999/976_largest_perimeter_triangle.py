@@ -8,10 +8,14 @@ class Solution:
         counter = len(nums) - 1
         candidates = [nums[counter - 2], nums[counter - 1], nums[counter]]
 
-        while not rule:
+        while not self.check(candidates):
             candidates.sort()
             candidates.pop()
             nums.pop()
+
+    def check(self, nums: List[int]):
+        maximum = max(nums)
+        return nums[0] + nums[1] + nums[2] if nums[0] + nums[1] + nums[2] - maximum > maximum else 0
 
 
 solution = Solution()
