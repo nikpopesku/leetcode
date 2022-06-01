@@ -3,17 +3,14 @@ from functools import reduce
 
 
 class Solution:
-    def nearestValidPoint(self, x: int, y: int, points: List[List[int]]) -> int:
-        minimum = float('inf')
-        minimum_position = -1
-        for i in range(len(points)):
-            diff1 = abs(x - points[i][0])
-            diff2 = abs(y - points[i][1])
-            if (not (diff1 and diff2)) and (diff1 + diff2 < minimum):
-                minimum = diff1 + diff2
-                minimum_position = i
+    def arraySign(self, nums: List[int]) -> int:
+        product = 1
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                return 0
+            product *= 1 if nums[i] > 0 else -1
 
-        return minimum_position
+        return product
 
 
 
