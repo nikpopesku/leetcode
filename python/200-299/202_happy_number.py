@@ -4,27 +4,19 @@ from functools import reduce
 
 class Solution:
     def isHappy(self, n: int) -> bool:
-        trend_asc = 0
-        trend_desc = 0
-        while n // 10 != 0 and trend_desc < 10 and trend_asc < 10:
+        total_iteration = 0
+        while n > 1 and total_iteration < 20:
             total_sum = 0
-            previous_n = n
+            total_iteration += 1
             while n:
                 digit = n % 10
                 n = n // 10
                 total_sum += digit ** 2
             if total_sum == 1:
                 return True
-            elif previous_n < total_sum:
-                trend_desc = 0
-                trend_asc += 1
-            else:
-                trend_asc = 0
-                trend_desc += 1
             n = total_sum
-
 
         return True if n == 1 else False
 
 solution = Solution()
-print(solution.isHappy(n = 19))
+print(solution.isHappy(n = 7))
