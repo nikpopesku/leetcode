@@ -4,10 +4,10 @@ from functools import reduce
 
 class Solution:
     def isHappy(self, n: int) -> bool:
-        total_sum = 0
         trend_asc = 0
         trend_desc = 0
         while n // 10 != 0 and trend_desc < 10 and trend_asc < 10:
+            total_sum = 0
             previous_n = n
             while n:
                 digit = n % 10
