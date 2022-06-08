@@ -1,5 +1,5 @@
 from typing import List
-from treenode import Node
+from ntreenode import Node
 
 
 class Solution:
