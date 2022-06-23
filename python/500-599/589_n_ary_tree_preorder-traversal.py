@@ -4,6 +4,16 @@ from ntreenode import Node
 
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
+        response = []
+
+        if root:
+            response += [root.val]
+
+            while root.children:
+                child = root.children.pop(0)
+                response += self.preorder(child)
+
+        return response
 
 
 solution = Solution()
