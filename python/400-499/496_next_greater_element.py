@@ -13,7 +13,7 @@ class Solution:
             place = hash[value]
             answer = -1
 
-            for i in range(nums2[place+1:]):
+            for i in range(place+1, len(nums2)):
                 if nums2[i] > value:
                     answer = nums2[i]
                     break
@@ -24,4 +24,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.nextGreaterElement(nums1 = [4,1,2], nums2 = [1,3,4,2]))
+print(solution.nextGreaterElement(nums1 = [2,4], nums2 = [1,2,3,4]))
