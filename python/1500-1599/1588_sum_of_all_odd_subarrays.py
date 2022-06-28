@@ -7,8 +7,6 @@ class Solution:
             return sum(arr)
         elif len(arr) == 3:
             return sum(arr) * 2
-        elif len(arr) == 4:
-            return sum(arr) + sum(arr[:3]) + sum(arr[1:4])
 
         numb = len(arr) // 2 if len(arr) / 2 > len(arr) // 2 else (len(arr) // 2) - 1
 
@@ -24,4 +22,4 @@ class Solution:
         return sum_all
 
 solution = Solution()
-print(solution.sumOddLengthSubarrays(arr = [1,4,2,5,3]))
+print(solution.sumOddLengthSubarrays(arr = [1,1,1,1,1,1]))
