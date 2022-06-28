@@ -15,11 +15,11 @@ class Solution:
         sum_all = 0
         for i in range(len(arr)):
             sum_all += arr[i] * numb
-            if i == len(arr) // 2 and len(arr) % 2 == 0:
+            if i - 1 == len(arr) // 2 and len(arr) % 2 == 0:
                 continue
             numb = numb + 1 if (i + 1) <= len(arr) / 2 else numb - 1
 
         return sum_all
 
 solution = Solution()
-print(solution.sumOddLengthSubarrays(arr = [1,2,3,4]))
+print(solution.sumOddLengthSubarrays(arr = [1,1,1,1,1,1,1,1,1,1]))
