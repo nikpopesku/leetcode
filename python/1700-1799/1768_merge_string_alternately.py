@@ -9,4 +9,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.mergeAlternately(word1 = "abc", word2 = "pqr"))
+print(solution.mergeAlternately(word1 = "a   b   c   d", word2 = "  p   q"))
