@@ -13,15 +13,16 @@ class Solution:
         answer = []
         i = 0
         while i < len(s):
-            for length in range(len(lengths)):
-                if (i + lengths[length]) <= len(s) and s[i:i+lengths[length]] in hashmap.keys():
-                    element = hashmap[s[i:i+lengths[length]]]
+            for l in range(len(lengths)):
+                length = lengths[l]
+                if (i + length) <= len(s) and s[i:i+length] in hashmap.keys():
+                    element = hashmap[s[i:i+length]]
                     break
             else:
-                lengths[length] = 1
+                length = 1
                 element = s[i]
             answer.append(element)
-            i = i + lengths[length]
+            i = i + length
 
         return ''.join(answer)
 
