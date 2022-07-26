@@ -8,8 +8,7 @@ class Solution:
         for i in range(10, 27):
             hashmap[str(i) + '#'] = chr(ord('j') + i - 10)
 
-        lengths = list(set([len(i) for i in hashmap.keys()]))
-        lengths.sort(reverse=True)
+        lengths = [3, 1]
         answer = []
         i = 0
         while i < len(s):
