@@ -8,19 +8,20 @@ class Solution:
         for i in range(10, 27):
             hashmap[str(i) + '#'] = chr(ord('j') + i - 10)
 
-        lengths = set([len(i) for i in hashmap.values()])
+        lengths = list(set([len(i) for i in hashmap.keys()]))
+        lengths.sort(reverse=True)
         answer = []
         i = 0
         while i < len(s):
-            for length in lengths:
-                if (i + length) <= len(s) and s[i:i+length] in hashmap.keys():
-                    element = hashmap[s[i:i+length]]
+            for length in range(len(lengths)):
+                if (i + lengths[length]) <= len(s) and s[i:i+lengths[length]] in hashmap.keys():
+                    element = hashmap[s[i:i+lengths[length]]]
                     break
             else:
-                length = 1
+                lengths[length] = 1
                 element = s[i]
             answer.append(element)
-            i = i + length
+            i = i + lengths[length]
 
         return ''.join(answer)
 
