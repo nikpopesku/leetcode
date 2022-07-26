@@ -4,14 +4,9 @@ from functools import reduce
 
 class Solution:
     def toLowerCase(self, s: str) -> str:
-        answer = []
-        for i in range(len(s)):
-            delta = 32 if 65 <= ord(s[i]) <= 90 else 0
-            answer.append(chr(ord(s[i]) + delta))
-
-        return ''.join(answer)
+        return ''.join([chr(ord(s[i]) + (32 if 65 <= ord(s[i]) <= 90 else 0)) for i in range(len(s))])
 
 
 
 solution = Solution()
-print(solution.toLowerCase(s = "LOVELY"))
+print(solution.toLowerCase(s = "Hello"))
