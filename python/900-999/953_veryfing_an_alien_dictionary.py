@@ -11,7 +11,7 @@ class Solution:
             hashmap[i] = key
 
         for i in range(1, len(words)):
-            size = len(words[i-1])
+            size = min(len(words[i-1]), len(words[i]))
             for j in range(size):
                 if hashmap[words[i-1][j]] > hashmap[words[i][j]]:
                     return False
