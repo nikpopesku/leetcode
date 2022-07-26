@@ -8,10 +8,12 @@ class Solution:
         for i in range(len(s)):
             hash[s[i]] = hash[s[i]] + 1 if s[i] in hash.keys() else 1
         for i in range(len(t)):
-            if s[i] not in hash.keys() or hash[s[i]] == 0:
-                return s[i]
+            if t[i] not in hash.keys():
+                return t[i]
+            elif hash[t[i]] == 0:
+                return t[i]
             else:
-                hash[s[i]] = hash[s[i]] - 1
+                hash[t[i]] = hash[t[i]] - 1
 
 
 solution = Solution()
