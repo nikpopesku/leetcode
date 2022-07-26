@@ -10,7 +10,7 @@ class Solution:
         i = 0
         while i < len(command):
             for length in lengths:
-                if (i + length) < len(command) and command[i:i+length] in hashmap.keys():
+                if (i + length) <= len(command) and command[i:i+length] in hashmap.keys():
                     element = hashmap[command[i:i+length]]['value']
                     break
             else:
@@ -19,7 +19,7 @@ class Solution:
             answer.append(element)
             i = i + length
 
-        return str(answer)
+        return ''.join(answer)
 
 solution = Solution()
 print(solution.interpret(command = "G()(al)"))
