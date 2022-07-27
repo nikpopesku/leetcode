@@ -10,8 +10,7 @@ class Solution:
             while element:
                 count_bits = count_bits + (element & 1)
                 element = element >> 1
-            hashmap[count_bits] = [arr[i]] if count_bits not in hashmap.keys() else hashmap[count_bits] + [arr[i]]
-        dict(sorted(hashmap.items()))
+            hashmap[count_bits] = hashmap[count_bits] + [arr[i]] if count_bits in hashmap.keys() else [arr[i]]
 
         response = []
         for key in sorted(hashmap):
