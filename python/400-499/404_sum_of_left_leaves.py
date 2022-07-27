@@ -10,7 +10,8 @@ class Solution:
             if element:
                 if element.left:
                     queue.append(element.left)
-                    left_list.append(element.left.val)
+                    if element.left.left is None and element.left.right is None:
+                        left_list.append(element.left.val)
                 if element.right:
                     queue.append(element.right)
 
