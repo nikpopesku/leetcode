@@ -14,11 +14,11 @@ class Solution:
         dict(sorted(hashmap.items()))
 
         response = []
-        for v in hashmap.values():
-            v.sort()
-            response = response + v
+        for key in sorted(hashmap):
+            hashmap[key].sort()
+            response = response + hashmap[key]
 
         return response
 
 solution = Solution()
-print(solution.sortByBits(arr = [0,1,2,3,4,5,6,7,8]))
+print(solution.sortByBits(arr = [10,100,1000,10000]))
