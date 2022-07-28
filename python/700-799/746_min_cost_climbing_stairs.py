@@ -7,12 +7,12 @@ class Solution:
         self.hashmap = {0: 0, 1: 0}
 
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        if len(cost) not in self.hashmap:
-            self.hashmap[len(cost)] = min(cost[-1] + self.minCostClimbingStairs(cost[:-1]), cost[-2] + self.minCostClimbingStairs(cost[:-2]))
+        for i in range(2, len(cost)+1):
+            self.hashmap[i] = min(cost[i-1] + self.hashmap[i-1], cost[i-2] + self.hashmap[i-2])
 
         return self.hashmap[len(cost)]
 
 
 solution = Solution()
-print(solution.minCostClimbingStairs(cost = [10,15,20]))
+print(solution.minCostClimbingStairs(cost = [1,100,1,1,1,100,1,1,100,1]))
 xx = 5
