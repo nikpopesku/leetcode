@@ -1,20 +1,15 @@
 import sys
 from typing import List
 
-class Solution:
-    def reverseString(self, s: List[str]) -> None:
-        """
-        Do not return anything, modify s in-place instead.
-        """
-        index1 = 0
-        index2 = len(s)-1
-        while index1 < index2:
-            s[index1], s[index2] = s[index2], s[index1]
-            index1 += 1
-            index2 -= 1
 
+class NumArray:
 
-        print(s)
+    def __init__(self, nums: List[int]):
+        pass
 
-solution = Solution()
+    def sumRange(self, left: int, right: int) -> int:
+        return 4
+
+obj = NumArray(nums)
+param_1 = obj.sumRange(left,right)
 print(solution.reverseString(list(sys.argv[1])))
