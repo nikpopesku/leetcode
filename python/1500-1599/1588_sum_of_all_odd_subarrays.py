@@ -2,24 +2,31 @@ from typing import List
 
 
 class Solution:
+    visited = {}
+
     def sumOddLengthSubarrays(self, arr: List[int]) -> int:
-        if len(arr) <= 2:
-            return sum(arr)
-        elif len(arr) == 3:
-            return sum(arr) * 2
+        if len(arr) >= 2:
+            sumall = 0
 
-        numb = len(arr) // 2 if len(arr) / 2 > len(arr) // 2 else (len(arr) // 2) - 1
+            if len(arr) % 2 == 1 and tuple(arr) not in self.visited:
+                self.visited[tuple(arr)] = sum(arr)
+                sumall = sum(arr)
 
-        sum_all = 0
-        for i in range(len(arr)):
-            if len(arr) % 2 == 1:
-                numb = numb + 1 if i <= len(arr) / 2 else numb - 1
-            elif not ((i == len(arr) // 2) and len(arr) % 2 == 0):
-                numb = numb + 1 if (i + 1) <= len(arr) / 2 else numb - 1
-            sum_all += arr[i] * numb
+            intermediate_sum = 0
 
+            for i in range(len(arr)):
+                elementlist = ([] if i == 0 else arr[:i]) + ([] if i == len(arr) - 1 else arr[i+1:])
+                if tuple(elementlist) not in self.visited.keys():
+                    intermediate_sum = intermediate_sum + self.sumOddLengthSubarrays(elementlist)
 
-        return sum_all
+            return sumall + intermediate_sum
+        else:
+            if tuple(arr) not in self.visited:
+                self.visited[tuple(arr)] = sum(arr)
+                return arr[0]
+            else:
+                return 0
 
 solution = Solution()
-print(solution.sumOddLengthSubarrays(arr = [1,1,1,1,1,1]))
+print(solution.sumOddLengthSubarrays(arr = [1,4,2,5,3]))
+xxx = 6
