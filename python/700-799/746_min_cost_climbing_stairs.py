@@ -12,7 +12,7 @@ class Solution:
             return cost[0]
 
         if len(cost) not in self.hashmap:
-            self.hashmap[len(cost)] = min(cost[-1] + self.minCostClimbingStairs(cost[:-1]), cost[-2] + self.minCostClimbingStairs(cost[:-2]))
+            self.hashmap[len(cost)] = min(cost[-1] + self.minCostClimbingStairs(cost[:-1]), cost[-2] + self.minCostClimbingStairs(cost[:-1]))
 
         return self.hashmap[len(cost)]
 
