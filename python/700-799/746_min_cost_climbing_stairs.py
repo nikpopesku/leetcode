@@ -8,6 +8,7 @@ class Solution:
 
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         if len(cost) == 1:
+            self.hashmap[1] = cost[0]
             return cost[0]
 
         if len(cost) not in self.hashmap:
@@ -18,3 +19,4 @@ class Solution:
 
 solution = Solution()
 print(solution.minCostClimbingStairs(cost = [10,15,20]))
+xx = 5
