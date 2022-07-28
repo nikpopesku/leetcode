@@ -5,27 +5,16 @@ class Solution:
     visited = {}
 
     def sumOddLengthSubarrays(self, arr: List[int]) -> int:
-        if len(arr) >= 2:
-            sumall = 0
+        possible_combinations = [i for i in range(1, len(arr)+1) if i % 2 == 1]
 
-            if len(arr) % 2 == 1 and tuple(arr) not in self.visited:
-                self.visited[tuple(arr)] = sum(arr)
-                sumall = sum(arr)
+        response = 0
 
-            intermediate_sum = 0
-
+        for length in possible_combinations:
             for i in range(len(arr)):
-                elementlist = ([] if i == 0 else arr[:i]) + ([] if i == len(arr) - 1 else arr[i+1:])
-                if tuple(elementlist) not in self.visited.keys():
-                    intermediate_sum = intermediate_sum + self.sumOddLengthSubarrays(elementlist)
+                if i + length <= len(arr):
+                    response = response + sum(arr[i:i+length])
 
-            return sumall + intermediate_sum
-        else:
-            if tuple(arr) not in self.visited:
-                self.visited[tuple(arr)] = sum(arr)
-                return arr[0]
-            else:
-                return 0
+        return response
 
 solution = Solution()
 print(solution.sumOddLengthSubarrays(arr = [1,4,2,5,3]))
