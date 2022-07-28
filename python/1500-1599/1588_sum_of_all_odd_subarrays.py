@@ -13,6 +13,8 @@ class Solution:
             for i in range(len(arr)):
                 if i + length <= len(arr):
                     response = response + sum(arr[i:i+length])
+                else:
+                    break
 
         return response
 
