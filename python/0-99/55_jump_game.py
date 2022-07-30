@@ -12,17 +12,21 @@ class Solution:
         if possible_positions[-1] >= len(nums) - 1:
             return True
 
-        while i < len(possible_positions):
+        if nums[0] == 0:
+            return False
+
+        while i >= 0:
             for j in range(1, nums[i] + 1):
                 if j + i not in possible_positions:
                     possible_positions.append(j + i)
                     if j + i >= len(nums) - 1:
                         return True
-            i = i + 1
+                    i = len(possible_positions)
+            i = i - 1
 
         return False
 
 
 
 solution = Solution()
-print(solution.canJump(nums = [2,3,1,1,4]))
+print(solution.canJump(nums = [1,1,1,0]))
