@@ -1,5 +1,5 @@
-import sys
-from typing import List, Set
+from typing import List
+from collections import Counter
 
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
@@ -16,23 +16,20 @@ class Solution:
 
 class Solution2:
     def deleteAndEarn(self, nums: List[int]) -> int:
-        max_points = {}
+        freq = Counter(nums)
+        pairs = [(num, count) for num, count in freq.items()]
+        pairs.sort()
 
-        for i in range(len(nums)):
-            max_points[nums[i]] = nums[i] if nums[i] not in max_points else max_points[nums[i]] + nums[i]
+        used, not_used = 0, 0
 
-        max_points = {k: v for k, v in sorted(max_points.items(), key=lambda item: item[1], reverse=True)}
+        for i, (num, count) in enumerate(pairs):
+            if i == 0 or pairs[i - 1][0] != num - 1:  # no previous noum or not num - 1
+                not_used = max(used, not_used)  # choose max
+                used = num * count + not_used  # add point from this num
+            else:
+                used, not_used = num * count + not_used, max(used, not_used)
 
-        response = 0
-        used = []
-
-        for k,v in max_points.items():
-            if k not in used:
-                used.append(k+1)
-                used.append(k-1)
-                response = response + v
-
-        return response
+        return max(used, not_used)
 
 solution = Solution2()
-print(solution.deleteAndEarn(nums = [3,4,2]))
+print(solution.deleteAndEarn(nums = [8,3,4,7,6,6,9,2,5,8,2,4,9,5,9,1,5,7,1,4]))
