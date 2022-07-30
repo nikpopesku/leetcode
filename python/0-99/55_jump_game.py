@@ -7,7 +7,7 @@ class Solution:
             return True
 
         possible_positions = list(range(nums[0] + 1))
-        i = 1
+        i = len(possible_positions) - 1
 
         if possible_positions[-1] >= len(nums) - 1:
             return True
@@ -22,6 +22,7 @@ class Solution:
                     if j + i >= len(nums) - 1:
                         return True
                     i = len(possible_positions)
+                    break
             i = i - 1
 
         return False
@@ -29,4 +30,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.canJump(nums = [1,1,1,0]))
+print(solution.canJump(nums = [3,0,8,2,0,0,1]))
