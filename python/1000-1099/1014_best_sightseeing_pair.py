@@ -19,11 +19,18 @@ class Solution:
 
         maxend2 = None
         for j in range(max_place):
-            if maxend2 is None or maxend2 < values[j] - j:
+            if maxend2 is None or maxend2 < values[j] + j:
                 maxend2 = values[j] + j
+
+
+        if maxend1 is None:
+            return maxend2 + maxstart - max_place * 2
+
+        if maxend2 is None:
+            return maxstart + maxend1
 
         return max(maxstart + maxend1, maxend2 + maxstart - max_place * 2)
 
 
 solution = Solution()
-print(solution.maxScoreSightseeingPair(values = [3,7,2,3]))
+print(solution.maxScoreSightseeingPair(values = [1,2]))
