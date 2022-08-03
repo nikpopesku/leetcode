@@ -8,14 +8,15 @@ class Solution:
             return max(nums)
 
         overall_max, overall_min = float('-inf'), float('inf')
-        max_ending_here, min_ending_here = 0, 0
+        max_sum = 0
+        min_sum = 0
 
         for num in nums:
-            max_ending_here = max(max_ending_here, 0) + num  # if previous max negative, set to zero
-            min_ending_here = min(min_ending_here, 0) + num  # if previous min positive, set to zero
+            max_sum = max(max_sum, 0) + num
+            min_sum = min(min_sum, 0) + num
 
-            overall_max = max(overall_max, max_ending_here)
-            overall_min = min(overall_min, min_ending_here)
+            overall_max = max(overall_max, max_sum)
+            overall_min = min(overall_min, min_sum)
 
         return max(overall_max, sum(nums) - overall_min)
 
