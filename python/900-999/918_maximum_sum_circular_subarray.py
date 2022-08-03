@@ -4,32 +4,20 @@ from typing import List
 
 class Solution:
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
-        max_current = 0
-        max_so_far = None
-        flag_beginning = False
-        i = 0
-        start_step = 0
+        if all(num <= 0 for num in nums):
+            return max(nums)
 
-        while True:
-            max_current += nums[i]
+        overall_max, overall_min = float('-inf'), float('inf')
+        max_ending_here, min_ending_here = 0, 0
 
-            if i == start_step and flag_beginning is True:
-                break
+        for num in nums:
+            max_ending_here = max(max_ending_here, 0) + num  # if previous max negative, set to zero
+            min_ending_here = min(min_ending_here, 0) + num  # if previous min positive, set to zero
 
-            if max_so_far is None or max_current > max_so_far:
-                max_so_far = max_current
+            overall_max = max(overall_max, max_ending_here)
+            overall_min = min(overall_min, min_ending_here)
 
-            i += 1
-
-            if i >= len(nums):
-                flag_beginning = True
-                i = i % len(nums)
-
-            if max_current < 0 or nums[i] < 0:
-                max_current = 0
-                start_step = i
-
-        return max_so_far
+        return max(overall_max, sum(nums) - overall_min)
 
 
 solution = Solution()
