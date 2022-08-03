@@ -4,20 +4,25 @@ from typing import List
 
 class Solution:
     def maxScoreSightseeingPair(self, values: List[int]) -> int:
-        maxstart = values[0] + 0
-        max_place = 0
+        maxstart = values[1] + 1
+        max_place = 1
 
-        for i in range(1, len(values) - 1):
+        for i in range(2, len(values) - 1):
             if values[i] > maxstart:
                 maxstart = values[i] + i
                 max_place = i
 
-        maxend = None
+        maxend1 = None
         for j in range(max_place + 1, len(values)):
-            if maxend is None or maxend < values[j] - j:
-                maxend = values[j] - j
+            if maxend1 is None or maxend1 < values[j] - j:
+                maxend1 = values[j] - j
 
-        return maxstart + maxend
+        maxend2 = None
+        for j in range(max_place):
+            if maxend2 is None or maxend2 < values[j] - j:
+                maxend2 = values[j] + j
+
+        return max(maxstart + maxend1, maxend2 + maxstart - max_place * 2)
 
 
 solution = Solution()
