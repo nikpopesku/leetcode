@@ -21,4 +21,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.maxScoreSightseeingPair(values = [8,1,5,2,6]))
+print(solution.maxScoreSightseeingPair(values = [3,7,2,3]))
