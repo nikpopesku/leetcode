@@ -3,28 +3,18 @@ from typing import List
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        local_minimum = None
-        local_maximum = None
+        if len(prices) == 0:
+            return 0
+        last_value = prices[0]
         response = 0
 
         for i in range(len(prices)):
-            if local_minimum is None or local_minimum > prices[i]:
-                if local_minimum is not None and local_maximum is not None and local_maximum > local_minimum:
-                    response = response + local_maximum - local_minimum
-                local_minimum = prices[i]
-                local_maximum = prices[i]
+            if last_value < prices[i]:
+                response = response + prices[i] - last_value
 
-            if local_maximum < prices[i]:
-                local_maximum = prices[i]
-                if i == len(prices) - 1 and local_maximum > local_minimum:
-                    response = response + local_maximum - local_minimum
-
-            if local_maximum > prices[i] and local_maximum > local_minimum:
-                response = response + local_maximum - local_minimum
-                local_minimum = prices[i]
-                local_maximum = prices[i]
+            last_value = prices[i]
 
         return response
 
 solution = Solution()
-print(solution.maxProfit(prices = [2,4,1]))
+print(solution.maxProfit(prices = [1,9,6,9,1,7,1,1,5,9,9,9]))
