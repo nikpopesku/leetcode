@@ -2,14 +2,9 @@ import sys
 from typing import List
 
 
-class NumArray:
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        return 3
 
-    def __init__(self, nums: List[int]):
-        self.nums = nums
-
-    def sumRange(self, left: int, right: int) -> int:
-        return sum(self.nums[left:right + 1])
-
-obj = NumArray(nums)
-param_1 = obj.sumRange(left,right)
-print(solution.reverseString(list(sys.argv[1])))
+solution = Solution()
+print(solution.maxProfit(prices = [1,2,3,0,2]))
