@@ -7,14 +7,14 @@ class Solution:
 
         for word in wordDict:
             if s[:len(word)] == word:
-                n = 1
-                while s[:len(word) * n] == word * n:
-                    n += 1
-                if len(word) * (n - 1) == len(s) | response:
-                    return True
-                response = response | self.wordBreak(s[len(word) * (n - 1):], wordDict)
-                if response:
-                    return True
+                n = len(s) // len(word)
+                while n >= 1:
+                    if len(word) * n == len(s) | response:
+                        return True
+                    response = response | self.wordBreak(s[len(word) * n:], wordDict)
+                    if response:
+                        return True
+                    n -= 1
 
         return response
 
