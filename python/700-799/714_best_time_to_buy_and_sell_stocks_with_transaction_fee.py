@@ -7,9 +7,9 @@ class Solution:
         buy, sell, prev_sell = float("-inf"), 0, 0
 
         for i, price in enumerate(prices):
-            buy = max(buy, prev_sell - price - fee)
+            buy = max(buy, prev_sell - price)
             prev_sell = sell
-            sell = max(sell, buy + price - fee)
+            sell = max(sell - fee, buy + price)
 
         return sell
 
