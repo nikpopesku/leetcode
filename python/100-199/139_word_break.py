@@ -3,13 +3,17 @@ from typing import List
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        response = False
+
         for word in wordDict:
             if s[:len(word)] == word:
-                if len(word) == len(s):
+                if len(word) == len(s) | response:
                     return True
-                return self.wordBreak(s[len(word):], wordDict)
+                response = response | self.wordBreak(s[len(word):], wordDict)
+                if response:
+                    return True
 
-        return False
+        return response
 
 
 solution = Solution()
