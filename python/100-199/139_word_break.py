@@ -7,9 +7,12 @@ class Solution:
 
         for word in wordDict:
             if s[:len(word)] == word:
-                if len(word) == len(s) | response:
+                n = 1
+                while s[:len(word) * n] == word * n:
+                    n += 1
+                if len(word) * (n - 1) == len(s) | response:
                     return True
-                response = response | self.wordBreak(s[len(word):], wordDict)
+                response = response | self.wordBreak(s[len(word) * (n - 1):], wordDict)
                 if response:
                     return True
 
@@ -17,4 +20,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.wordBreak(s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", wordDict = ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]))
+print(solution.wordBreak(s = "catskicatcats", wordDict = ["cats","cat","dog","ski"]))
