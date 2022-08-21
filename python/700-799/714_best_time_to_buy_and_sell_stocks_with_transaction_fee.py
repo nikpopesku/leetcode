@@ -7,10 +7,12 @@ class Solution:
         buy, sell = float("-inf"), 0
 
         for price in prices:
-            buy, sell = max(buy, sell - price), max(sell, buy + price - fee)
+            temp_sell = max(sell, buy + price - fee)
+            buy = max(buy, sell - price)
+            sell = temp_sell
 
         return sell
 
 
 solution = Solution()
-print(solution.maxProfit(prices = [1,3,9], fee = 2))
+print(solution.maxProfit(prices = [1,3,2,8,4,9], fee = 2))
