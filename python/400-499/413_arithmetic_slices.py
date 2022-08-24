@@ -5,29 +5,13 @@ class Solution:
         if len(nums) < 3:
             return 0
 
-        total = 0
-        counter = 1
-        delta = []
-        delta.append(None)
+        dp = [0] * len(nums)
 
-        for i in range(1, len(nums)):
-            delta.append(nums[i] - nums[i - 1])
+        for i in range(2, len(nums)):
+            if nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]:
+                dp[i] = dp[i - 1] + 1
 
-        delta[0] = delta[1]
-
-        for i in range(1, len(delta)):
-            if delta[i] == delta[i - 1]:
-                counter += 1
-            else:
-                if counter >= 3:
-                    total += (counter - 1) * (counter - 2) / 2
-
-                counter = 1
-
-        if counter >= 3:
-            total += (counter - 1) * (counter - 2) / 2
-
-        return int(total)
+        return sum(dp)
 
 
 
