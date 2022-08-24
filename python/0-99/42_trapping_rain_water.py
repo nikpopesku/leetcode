@@ -1,4 +1,4 @@
-import sys
+from typing import List
 
 
 class Solution:
@@ -6,7 +6,7 @@ class Solution:
         water, max_left, max_right = 0, height[0], height[len(height) - 1]
         i, j = 0, len(height) - 1
 
-        while i < j:
+        while i <= j:
             if max_left < max_right:
                 max_left = max(max_left, height[i])
                 water += max_left - height[i]
