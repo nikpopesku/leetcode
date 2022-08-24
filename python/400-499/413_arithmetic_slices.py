@@ -8,10 +8,10 @@ class Solution:
         total = 0
         counter = 1
         delta = []
-        delta[0] = None
+        delta.append(None)
 
         for i in range(1, len(nums)):
-            delta[i] = nums[i] - nums[i - 1]
+            delta.append(nums[i] - nums[i - 1])
 
         delta[0] = delta[1]
 
@@ -24,10 +24,13 @@ class Solution:
 
                 counter = 1
 
-        return total
+        if counter >= 3:
+            total += (counter - 1) * (counter - 2) / 2
+
+        return int(total)
 
 
 
 
 solution = Solution()
-print(solution.longestPalindrome(sys.argv[1]))
+print(solution.numberOfArithmeticSlices(nums = [1,2,3,8,9,10]))
