@@ -28,7 +28,16 @@ class Solution:
             if number in dp:
                 continue
 
-            dp.append(number)
+            copy_number = number
+
+            for i in [2,3,5]:
+                while divmod(number, i)[1] == 0:
+                    number = divmod(number, i)[0]
+
+            if number != 1:
+                continue
+
+            dp.append(copy_number)
 
         return dp[n-1]
 
