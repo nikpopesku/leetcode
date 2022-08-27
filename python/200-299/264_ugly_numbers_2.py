@@ -4,6 +4,7 @@ from typing import List, Set
 class Solution:
     def nthUglyNumber(self, n: int) -> int:
         dp = [1]
+        dp_set = {1}
 
         index2 = 0
         index3 = 0
@@ -25,10 +26,11 @@ class Solution:
             else:
                 index5 += 1
 
-            if number in dp:
+            if number in dp_set:
                 continue
 
             dp.append(number)
+            dp_set.add(number)
 
         return dp[n-1]
 
