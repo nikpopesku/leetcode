@@ -9,10 +9,10 @@ class Solution:
         index3 = 1
         index5 = 1
 
-        if index in dp:
-            return dp[index]
+        if n <= len(dp):
+            return dp[n-1]
 
-        while n < len(dp):
+        while len(dp) < n:
             number2 = (index2 + 1) * 2
             number3 = (index3 + 1) * 3
             number5 = (index5 + 1) * 5
@@ -25,12 +25,15 @@ class Solution:
             else:
                 index5 += 1
 
+            if number in dp:
+                continue
+
             dp.append(number)
 
-        return dp[n]
+        return dp[n-1]
 
 
 
 
 solution = Solution()
-print(solution.nthUglyNumber(n = 10))
+print(solution.nthUglyNumber(n = 11))
