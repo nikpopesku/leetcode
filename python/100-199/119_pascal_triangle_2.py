@@ -3,15 +3,18 @@ from treenode import TreeNode
 
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
-        dp = [(1,), (1, 1), (1, 2, 1)]
+        if rowIndex == 0:
+            return [1]
 
-        if rowIndex <= len(dp) - 1:
-            return list(dp[rowIndex])
+        if rowIndex == 1:
+            return [1, 1]
 
-        for i in range(3, rowIndex + 1):
-            dp.append(tuple(1 if j == 0 or j == len(dp[i - 1]) else dp[i - 1][j - 1] + dp[i - 1][j] for j in range(i + 1)))
+        dp = (1, 1)
 
-        return list(dp[-1])
+        for i in range(2, rowIndex + 1):
+            dp = tuple(1 if j == 0 or j == len(dp) else dp[j - 1] + dp[j] for j in range(i + 1))
+
+        return list(dp)
 
 
 solution = Solution()
