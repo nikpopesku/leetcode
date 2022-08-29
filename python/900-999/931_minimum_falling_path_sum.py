@@ -3,7 +3,17 @@ from typing import List, Dict
 
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
-        return 13
+        dp = [tuple(matrix[0])]
+        length = len(matrix)
+
+        if length > 1:
+            for i in range(1, length):
+                dp.append(tuple(
+                    matrix[i][j] + min(dp[i - 1][j - 1] if j - 1 >= 0 else dp[i - 1][j], dp[i - 1][j],
+                                       dp[i - 1][j + 1] if j + 1 <= length - 1 else dp[i - 1][j]) for j in
+                    range(0, length)))
+
+        return min(dp[-1])
 
 
 solution = Solution()
