@@ -2,13 +2,13 @@ import sys
 from typing import List
 
 
-class NumArray:
+class NumMatrix:
 
-    def __init__(self, nums: List[int]):
-        self.nums = nums
+    def __init__(self, matrix: List[List[int]]):
+        pass
 
-    def sumRange(self, left: int, right: int) -> int:
-        return sum(self.nums[left:right + 1])
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        return 5
 
 obj = NumArray(nums)
 param_1 = obj.sumRange(left,right)
