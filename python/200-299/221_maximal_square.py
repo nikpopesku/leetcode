@@ -3,21 +3,17 @@ from typing import List, Set
 
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
-        dp = [int(matrix[0][j]) for j in range(len(matrix[0]))]
-        max_dp = max(dp)
+        matrix = [[int(i) for i in row] for row in matrix]
 
-        for i in range(1, len(matrix)):
-            element = [int(matrix[i][0])]
-            for j in range(1, len(matrix[i])):
-                if (matrix[i - 1][j - 1] == '1'):
-                    element.append(min(dp[j - 1], dp[j], element[-1]) + 1)
-                    max_dp = max(element[j], max_dp)
-                else:
-                    element.append(0)
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j] == 1:
+                    if i - 1 < 0 or j - 1 < 0:
+                        continue
+                    else:
+                        matrix[i][j] = min(matrix[i - 1][j - 1], matrix[i - 1][j], matrix[i][j - 1]) + 1
 
-            dp = element
-
-        return int(max_dp * max_dp)
+        return max([max(row) for row in matrix]) ** 2
 
 solution = Solution()
 print(solution.maximalSquare(matrix = [["1","1"],["1","1"]]))
