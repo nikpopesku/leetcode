@@ -11,7 +11,7 @@ class Solution:
             for j in range(1, len(matrix[i])):
                 if (matrix[i - 1][j - 1] == '1'):
                     element.append(min(dp[j - 1], dp[j], element[-1]) + 1)
-                    max_dp = max(dp[j], max_dp)
+                    max_dp = max(element[j], max_dp)
                 else:
                     element.append(0)
 
@@ -20,4 +20,4 @@ class Solution:
         return int(max_dp * max_dp)
 
 solution = Solution()
-print(solution.maximalSquare(matrix = [["0","0","0","1","0","1","1","1"],["0","1","1","0","0","1","0","1"],["1","0","1","1","1","1","0","1"],["0","0","0","1","0","0","0","0"],["0","0","1","0","0","0","1","0"],["1","1","1","0","0","1","1","1"],["1","0","0","1","1","0","0","1"],["0","1","0","0","1","1","0","0"],["1","0","0","1","0","0","0","0"]]))
+print(solution.maximalSquare(matrix = [["1","1"],["1","1"]]))
