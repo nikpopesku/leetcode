@@ -3,7 +3,17 @@ import sys
 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        return "bab"
+        maxp = 1
+        maxsub = s[0]
+
+        for i in range(len(s)):
+            for j in range(i + maxp, len(s)-1):
+                temp = s[i:j+1]
+                if temp == temp[::-1]:
+                    maxp = j + 1 - i
+                    maxsub = s[i:j+1]
+
+        return maxsub
 
 
 solution = Solution()
