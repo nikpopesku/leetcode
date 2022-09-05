@@ -7,7 +7,7 @@ class Solution:
         maxsub = s[0]
 
         for i in range(len(s)):
-            for j in range(i + maxp, len(s)-1):
+            for j in range(i + maxp, len(s)):
                 temp = s[i:j+1]
                 if temp == temp[::-1]:
                     maxp = j + 1 - i
@@ -17,4 +17,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.longestPalindrome(s = "babad"))
+print(solution.longestPalindrome(s = "bb"))
