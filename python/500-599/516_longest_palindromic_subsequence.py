@@ -5,6 +5,7 @@ from typing import List
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
         dp = {}
+
         def rec(l, r):
             if (l, r) in dp:
                 return dp[(l, r)]
