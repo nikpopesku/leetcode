@@ -4,19 +4,19 @@ from typing import List
 
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
-        n = len(s)
-        dp = [[1] * n for _ in range(n)]
-        for i in range(n - 2, -1, -1):
-            for j in range(i + 1, n):
-                if s[i] == s[j]:
-                    if j == i + 1:
-                        dp[i][j] = 2
-                    else:
-                        dp[i][j] = 2 + dp[i + 1][j - 1]
-                else:
-                    dp[i][j] = max(dp[i][j - 1], dp[i + 1][j])
+        @cache
+        def rec(l, r):
+            if l > r:
+                return 0
+            if l == r:
+                return 1
 
-        return dp[0][-1]
+            if s[l] == s[r]:
+                return 2 + rec(l + 1, r - 1)
+            else:
+                return max(rec(l + 1, r), rec(l, r - 1))
+
+        return rec(0, len(s) - 1)
 
 
 solution = Solution()
