@@ -14,10 +14,9 @@ class Solution:
             if l == r:
                 return 1
 
-            if s[l] == s[r]:
-                return 2 + rec(l + 1, r - 1)
-            else:
-                return max(rec(l + 1, r), rec(l, r - 1))
+            dp[(l, r)] = 2 + rec(l + 1, r - 1) if s[l] == s[r] else max(rec(l + 1, r), rec(l, r - 1))
+
+            return dp[(l, r)]
 
         return rec(0, len(s) - 1)
 
