@@ -1,10 +1,17 @@
-import sys
 from typing import List
-
+from bisect import bisect_left
 
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        return 4
+        response = [nums[0]]
+
+        for n in nums:
+            if n > response[-1]:
+                response.append(n)
+
+            response[bisect_left(response, n)] = n
+
+        return len(response)
 
 
 solution = Solution()
