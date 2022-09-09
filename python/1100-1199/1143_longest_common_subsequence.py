@@ -27,25 +27,25 @@ class Solution:
         dp_min[0] = min_index
 
         j = 0
-        while j < len(min_text):
+        while j < len(min_text)-1:
             j += 1
             min_so_far = float('inf')
             min_index = None
 
             for i in range(dp_min[j - 1] + 1, len(min_text)):
-                index = max_text[dp_max[j - 1] + 1:].find(min_text[i])
+                index = max_text.find(min_text[i], dp_max[j - 1] + 1)
 
                 if index != -1 and index < min_so_far:
                     min_so_far = index
                     min_index = i
 
             if min_so_far == float('inf'):
-                return dp_min[j - 1]
+                return max(dp_min.keys()) + 1
 
             dp_max[j] = min_so_far
             dp_min[j] = min_index
 
-        return dp_min[j]
+        return max(dp_min.keys()) + 1
 
 
 solution = Solution()
