@@ -4,7 +4,8 @@ from listnode import ListNode
 
 class Solution:
     def runningSum(self, nums: List[int]) -> List[int]:
-        return [1,3,6,10]
+        last = 0
+        return [last := last + num for num in nums]
 
 
 solution = Solution()
