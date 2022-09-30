@@ -13,7 +13,7 @@ class Solution:
         if len(nums) == 1 or running_sum_right[len(nums) - 2] == 0 or running_sum_left[:len(nums) - 2] == 0:
             return 0
 
-        for key in range(1, len(nums) - 1):
+        for key in range(1, len(nums)):
             if running_sum_left[key] == running_sum_right[len(nums) - key - 1]:
                 return key
 
@@ -30,4 +30,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.pivotIndex(nums = [1,7,3,6,5,6]))
+print(solution.pivotIndex(nums = [-1,-1,0,1,1,0]))
