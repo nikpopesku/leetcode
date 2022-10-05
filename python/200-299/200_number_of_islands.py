@@ -7,14 +7,14 @@ class Solution:
         current_island = []
         number_of_islands = 0
         len_grid = len(grid[0]) * len(grid)
-        i = 0
-        j = 0
+        x = 0
+        y = 0
 
         while len(visited) < len_grid:
-            if str(i) + '_' + str(j) not in visited:
-                visited.add(str(i) + '_' + str(j))
-                if grid[i][j] == '1':
-                    current_island.append(str(i) + '_' + str(j))
+            if str(x) + '_' + str(y) not in visited:
+                visited.add(str(x) + '_' + str(y))
+                if grid[x][y] == '1':
+                    current_island.append(str(x) + '_' + str(y))
                     number_of_islands += 1
 
             while len(current_island) != 0:
@@ -30,11 +30,11 @@ class Solution:
                     if grid[i][j + 1] == '1':
                         current_island.append(str(i) + '_' + str(j + 1))
 
-            if j < (len(grid[0]) - 1):
-                j += 1
-            elif i < len(grid) - 1:
-                i += 1
-                j = 0
+            if y < (len(grid[0]) - 1):
+                y += 1
+            elif x < len(grid) - 1:
+                x += 1
+                y = 0
 
         return number_of_islands
 
