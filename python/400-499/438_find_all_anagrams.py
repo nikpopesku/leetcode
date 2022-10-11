@@ -2,7 +2,7 @@ from typing import List
 
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        counter = len(s) - len(p) - 1
+        counter = len(s) - len(p)
         response = []
         hashmap_initial = {}
 
@@ -12,7 +12,7 @@ class Solution:
 
         for i in range(len(s) - 1, -1, -1):
             if s[i] not in hashmap or hashmap[s[i]] == 0:
-                counter = i - len(p) - 1
+                counter = i - len(p)
                 if counter < 0:
                     break
                 hashmap = hashmap_initial.copy()
