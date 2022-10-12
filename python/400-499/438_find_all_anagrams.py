@@ -11,12 +11,13 @@ class Solution:
         hashmap = hashmap_initial.copy()
 
         for i in range(len(s) - 1, -1, -1):
-            if s[i] not in hashmap or hashmap[s[i]] == 0:
-                counter = i - len(p)
+            if s[i] not in hashmap:
+                counter = i - len(p) + 1
                 if counter < 0:
                     break
-                hashmap = hashmap_initial.copy()
-            else:
+                if len(hashmap) == 0:
+                    hashmap = hashmap_initial.copy()
+            if s[i] in hashmap:
                 hashmap[s[i]] -= hashmap[s[i]]
                 if hashmap[s[i]] == 0:
                     del hashmap[s[i]]
@@ -29,4 +30,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.findAnagrams(s = "cbaebabacd", p = "abc"))
+print(solution.findAnagrams(s = "abab", p = "ab"))
