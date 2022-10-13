@@ -2,6 +2,9 @@ from typing import List
 
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
+        if len(p) > len(s):
+            return []
+
         pointer1 = 0
         pointer2 = len(p) - 1
         p_map = {}
@@ -34,4 +37,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.findAnagrams(s = "abab", p = "ab"))
+print(solution.findAnagrams(s = "aaaaaaaaaa", p = "aaaaaaaaaaaaa"))
