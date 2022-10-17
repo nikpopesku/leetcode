@@ -13,7 +13,6 @@ class Solution:
         bulls = 0
         cows = 0
         possible_cows = []
-        possible_cows_count = {}
 
         for key, char in enumerate(guess):
             if char in secret_map:
