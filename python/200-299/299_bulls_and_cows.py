@@ -11,20 +11,22 @@ class Solution:
 
         bulls = 0
         cows = 0
+        possible_cows = []
 
         for key, char in enumerate(guess):
             if char in secret_map:
                 if key in secret_map[char]:
                     bulls += 1
                     secret_map[char] = secret_map[char] - {key}
-                if len(secret_map[char]) == 0:
-                    del secret_map[char]
+                    if len(secret_map[char]) == 0:
+                        del secret_map[char]
+                else:
+                    possible_cows.append(char)
 
-        for key, char in enumerate(guess):
+        for char in possible_cows:
             if char in secret_map:
-                if not key in secret_map[char]:
-                    secret_map[char].pop()
-                    cows += 1
+                secret_map[char].pop()
+                cows += 1
                 if len(secret_map[char]) == 0:
                     del secret_map[char]
 
