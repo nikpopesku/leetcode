@@ -6,18 +6,20 @@ class Solution:
         secret_map = {}
 
         for key, char in enumerate(secret):
-            secret_map[char] = set() if char not in secret_map else secret_map[char]
-            secret_map[char].add(key)
+            if char not in secret_map:
+                secret_map[char] = {}
+            secret_map[char][key] = None
 
         bulls = 0
         cows = 0
         possible_cows = []
+        possible_cows_count = {}
 
         for key, char in enumerate(guess):
             if char in secret_map:
                 if key in secret_map[char]:
                     bulls += 1
-                    secret_map[char] = secret_map[char] - {key}
+                    del secret_map[char][key]
                     if len(secret_map[char]) == 0:
                         del secret_map[char]
                 else:
@@ -25,9 +27,11 @@ class Solution:
 
         for char in possible_cows:
             if char in secret_map:
-                secret_map[char].pop()
+                if type(secret_map[char]) is dict:
+                    secret_map[char] = len(secret_map[char])
                 cows += 1
-                if len(secret_map[char]) == 0:
+                secret_map[char] -= 1
+                if secret_map[char] == 0:
                     del secret_map[char]
 
         return str(bulls) + 'A' + str(cows) + 'B'
