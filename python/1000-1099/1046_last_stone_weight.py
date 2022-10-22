@@ -10,7 +10,7 @@ class Solution:
             return stones[0]
 
         for value in stones:
-            heapq.heappush(updated_stones, -1 * value)
+            heapq.heappush(updated_stones, -value)
 
         for i in range(len(stones) - 1):
             heapq.heappush(updated_stones, heapq.heappop(updated_stones) - heapq.heappop(updated_stones))
