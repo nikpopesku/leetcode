@@ -7,11 +7,19 @@ class Solution:
         for word in words:
             cnt[word] += 1
 
-        return [word for word, value in cnt.most_common(k)]
+        min_value = min(value for word, value in cnt.most_common(k))
+        big_words = [word for word, value in cnt.items() if value > min_value]
+        if len(big_words) == k:
+            return big_words
+
+        small_words = [word for word, value in cnt.items() if value <= min_value]
+        small_words.sort()
+
+        return big_words + small_words[:k-len(big_words)]
 
 
 
 
 
 solution = Solution()
-print(solution.topKFrequent(words = ["i","love","leetcode","i","love","coding"], k = 2))
+print(solution.topKFrequent(words = ["i","love","leetcode","i","love","coding"], k = 3))
