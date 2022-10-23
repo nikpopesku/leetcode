@@ -12,10 +12,14 @@ class Solution:
         if len(big_words) == k:
             return big_words
 
-        small_words = [word for word, value in cnt.items() if value <= min_value]
-        small_words.sort()
+        equal_words = [word for word, value in cnt.items() if value == min_value]
 
-        return big_words + small_words[:k-len(big_words)]
+        if len(equal_words) == k - len(big_words):
+            return big_words + equal_words
+
+        equal_words.sort()
+
+        return big_words + equal_words[:k-len(big_words)]
 
 
 
