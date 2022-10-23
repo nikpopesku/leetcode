@@ -14,9 +14,6 @@ class Solution:
 
         equal_words = [word for word, value in cnt.items() if value == min_value]
 
-        if len(equal_words) == k - len(big_words):
-            return big_words + equal_words
-
         equal_words.sort()
 
         return big_words + equal_words[:k-len(big_words)]
@@ -26,4 +23,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.topKFrequent(words = ["i","love","leetcode","i","love","coding"], k = 3))
+print(solution.topKFrequent(words = ["i","love","leetcode","i","love","coding"], k = 2))
