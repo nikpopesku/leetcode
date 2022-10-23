@@ -4,7 +4,7 @@ from collections import Counter
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         words = sorted(words)
-        tem = collections.Counter(words).most_common(k)
+        tem = Counter(words).most_common(k)
 
         return [i[0] for i in tem]
 
