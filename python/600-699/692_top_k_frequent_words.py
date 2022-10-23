@@ -3,20 +3,10 @@ from collections import Counter
 
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        cnt = Counter()
-        for word in words:
-            cnt[word] += 1
+        words = sorted(words)
+        tem = collections.Counter(words).most_common(k)
 
-        min_value = min(value for word, value in cnt.most_common(k))
-        big_words = [word for word, value in cnt.items() if value > min_value]
-        if len(big_words) == k:
-            return big_words
-
-        equal_words = [word for word, value in cnt.items() if value == min_value]
-
-        equal_words.sort()
-
-        return big_words + equal_words[:k-len(big_words)]
+        return [i[0] for i in tem]
 
 
 
