@@ -3,7 +3,13 @@ from treenode import TreeNode
 
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        return True
+        return -1 <= (Solution.getHeight(root.left) if root.left else 0) - (
+            Solution.getHeight(root.right) if root.right else 0) <= 1
+
+    @classmethod
+    def getHeight(root: Optional[TreeNode]) -> int:
+        return 1 + max(Solution.getHeight(root.left) if root.left else 0,
+                       Solution.getHeight(root.right) if root.right else 0)
 
 
 solution = Solution()
