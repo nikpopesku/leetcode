@@ -3,8 +3,8 @@ from treenode import TreeNode
 
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        return -1 <= (Solution.getHeight(root.left) if root.left else 0) - (
-            Solution.getHeight(root.right) if root.right else 0) <= 1
+        return (self.isBalanced(root.left) if root.left else True) and (self.isBalanced(root.right) if root.right else True) and \
+               abs((Solution.getHeight(root.left) if root.left else 0) - (Solution.getHeight(root.right) if root.right else 0)) <= 1
 
     @staticmethod
     def getHeight(root: Optional[TreeNode]) -> int:
