@@ -3,18 +3,21 @@ from treenode import TreeNode
 
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        if root is None:
-            return True
+        flag = True
 
-        return (self.isBalanced(root.left) if root.left else True) and (
-            self.isBalanced(root.right) if root.right else True) and abs(
-            (Solution.getHeight(root.left) if root.left else 0) - (
-                Solution.getHeight(root.right) if root.right else 0)) <= 1
+        def height(root: Optional[TreeNode]) -> int:
+            nonlocal flag
+            if root is None:
+                return 0
+            heightLeft = height(root.left)
+            heightRight = height(root.right)
+            if abs(heightLeft - heightRight) > 1:
+                flag = False
 
-    @staticmethod
-    def getHeight(root: Optional[TreeNode]) -> int:
-        return 1 + max(Solution.getHeight(root.left) if root.left else 0,
-                       Solution.getHeight(root.right) if root.right else 0)
+            return 1 + max(heightLeft, heightRight)
+
+        height(root)
+        return flag
 
 
 r1 = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4))), TreeNode(2, None, TreeNode(3, None, TreeNode(4))))
