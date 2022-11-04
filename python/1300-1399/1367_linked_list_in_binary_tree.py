@@ -20,9 +20,9 @@ class Solution:
         if root.right and head and not responseLeft:
             responseRight = self.isSubPath(head, root.right)
 
-        return (response and head is None) or (response and (responseLeft or responseRight))
+        return (response and head is None) or (responseLeft or responseRight)
 
-listNode = ListNode(1, ListNode(4, ListNode(2)))
+listNode = ListNode(1, ListNode(4, ListNode(2, ListNode(6, ListNode(8)))))
 root = TreeNode(1, TreeNode(4, None, TreeNode(2, TreeNode(1))), TreeNode(4, TreeNode(2, TreeNode(6), TreeNode(8, TreeNode(1), TreeNode(3)))))
 solution = Solution()
 print(solution.isSubPath(head = listNode, root = root))
