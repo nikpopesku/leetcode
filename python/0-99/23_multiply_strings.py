@@ -19,17 +19,20 @@ class Solution:
                     whole, remainder = divmod(int(char1) * int(char2), 10)
                     remainder = remainder + temp
                     temp = whole
+                    if remainder > 9:
+                        remainder = remainder % 10
+                        temp = temp + 1
                     response_temp.append(remainder)
                 if temp != 0:
                     response_temp.append(temp)
-                if char1 not in map:
-                    map[char1] = response_temp
+                map[char1] = response_temp
             else:
                 response_temp = map[char1]
 
             response = response + int(''.join(str(c) for c in response_temp[::-1])) * power
             power = power * 10
 
+        return str(response)
 
 
 solution = Solution()
