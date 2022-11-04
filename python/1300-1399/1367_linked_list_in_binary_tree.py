@@ -6,21 +6,29 @@ from treenode import TreeNode
 
 class Solution:
     def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
-        response = False
-        responseLeft = False
-        responseRight = False
+        if not head:
+            return True
 
-        if root and head and root.val == head.val:
-            response = True
-            head = head.next
+        if not root:
+            return False
 
-        if root.left and head:
-            responseLeft = self.isSubPath(head, root.left)
+        if Solution.dfs(head, root):
+            return True
 
-        if root.right and head and not responseLeft:
-            responseRight = self.isSubPath(head, root.right)
+        return self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
 
-        return (response and head is None) or (responseLeft or responseRight)
+    @staticmethod
+    def dfs(head: Optional[ListNode], root: Optional[TreeNode]):
+        if not head:
+            return True
+
+        if not root:
+            return False
+
+        if root.val == head.val:
+            return Solution.dfs(head.next, root.left) or Solution.dfs(head.next, root.right)
+
+        return False
 
 listNode = ListNode(1, ListNode(4, ListNode(2, ListNode(6, ListNode(8)))))
 root = TreeNode(1, TreeNode(4, None, TreeNode(2, TreeNode(1))), TreeNode(4, TreeNode(2, TreeNode(6), TreeNode(8, TreeNode(1), TreeNode(3)))))
