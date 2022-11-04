@@ -9,24 +9,28 @@ class Solution:
 
         power = 1
         response = 0
+        map = {}
 
         for char1 in num1[::-1]:
             temp = 0
             response_temp = []
-            for char2 in num2[::-1]:
-                whole, remainder = divmod(int(char1) * int(char2), 10)
-                remainder = remainder + temp
-                temp = whole
-                response_temp.append(remainder)
-            if temp != 0:
-                response_temp.append(temp)
+            if char1 not in map:
+                for char2 in num2[::-1]:
+                    whole, remainder = divmod(int(char1) * int(char2), 10)
+                    remainder = remainder + temp
+                    temp = whole
+                    response_temp.append(remainder)
+                if temp != 0:
+                    response_temp.append(temp)
+                if char1 not in map:
+                    map[char1] = response_temp
+            else:
+                response_temp = map[char1]
 
             response = response + int(''.join(str(c) for c in response_temp[::-1])) * power
             power = power * 10
 
-        return str(response)
-
 
 
 solution = Solution()
-print(solution.multiply(num1 = "123", num2 = "456"))
+print(solution.multiply(num1 = "123456789", num2 = "987654321"))
