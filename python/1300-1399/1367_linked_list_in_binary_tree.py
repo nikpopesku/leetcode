@@ -37,7 +37,7 @@ class Solution:
 
         return False
 
-listNode = ListNode(4, ListNode(2, ListNode(8)))
+listNode = ListNode(1, ListNode(4, ListNode(2, ListNode(6))))
 root = TreeNode(1, TreeNode(4, None, TreeNode(2, TreeNode(1))), TreeNode(4, TreeNode(2, TreeNode(6), TreeNode(8, TreeNode(1), TreeNode(3)))))
 solution = Solution()
 print(solution.isSubPath(head = listNode, root = root))
