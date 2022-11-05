@@ -6,14 +6,14 @@ class Solution:
     def addBinary(self, a: str, b: str) -> str:
         response = []
         temp = 0
-        smaller, bigger = a, b
 
-        if len(a) != len(b):
-            smaller = a if len(a) < len(b) else b
-            bigger = a if len(a) > len(b) else b
-            smaller = '0' * (len(bigger) - len(smaller)) + smaller
+        if len(a) < len(b):
+            a = '0' * (len(b) - len(a)) + a
 
-        index = len(smaller) -1
+        if len(b) < len(a):
+            b = '0' * (len(a) - len(b)) + b
+
+        index = len(a) - 1
 
         while index >= 0:
             whole, remainder = divmod(int(a[index]) + int(b[index]), 2)
@@ -30,4 +30,4 @@ class Solution:
         return ''.join(str(c) for c in response[::-1])
 
 solution = Solution()
-print(solution.addBinary("1010", b = "1011"))
+print(solution.addBinary(a = "11", b = "1"))
