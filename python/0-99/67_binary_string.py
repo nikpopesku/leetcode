@@ -5,21 +5,22 @@ from typing import List
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
         response = []
-        index = 0
         temp = 0
-        while index < len(a) and index < len(b):
+        smaller, bigger = a, b
+
+        if len(a) != len(b):
+            smaller = a if len(a) < len(b) else b
+            bigger = a if len(a) > len(b) else b
+            smaller = '0' * (len(bigger) - len(smaller)) + smaller
+
+        index = len(smaller) -1
+
+        while index >= 0:
             whole, remainder = divmod(int(a[index]) + int(b[index]), 2)
             response.append(remainder + temp)
             temp = whole
-            index = index + 1
+            index = index - 1
 
-        if len(a) != len(b):
-            bigger = a if len(a) > len(b) else bigger
-            while index < len(bigger):
-                whole, remainder = divmod(int(bigger[index]) + temp, 2)
-                response.append(remainder)
-                temp = whole
-                index = index + 1
         if temp > 0:
             whole, remainder = divmod(temp, 2)
             response.append(remainder)
