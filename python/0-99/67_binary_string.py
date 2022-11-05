@@ -22,10 +22,7 @@ class Solution:
             index = index - 1
 
         if temp > 0:
-            whole, remainder = divmod(temp, 2)
-            response.append(remainder)
-            if whole > 0:
-                response.append(remainder)
+            response.append(temp)
 
         return ''.join(str(c) for c in response[::-1])
 
