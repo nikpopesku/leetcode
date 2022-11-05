@@ -16,8 +16,8 @@ class Solution:
         index = len(a) - 1
 
         while index >= 0:
-            whole, remainder = divmod(int(a[index]) + int(b[index]), 2)
-            response.append(remainder + temp)
+            whole, remainder = divmod(int(a[index]) + int(b[index]) + temp, 2)
+            response.append(remainder)
             temp = whole
             index = index - 1
 
