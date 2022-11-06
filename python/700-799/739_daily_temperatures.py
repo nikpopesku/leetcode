@@ -18,10 +18,8 @@ class Solution:
                 del map[key]
             map[i] = [temperatures[i], 0]
 
-        if len(map) > 0:
             for key, value in map.items():
-                if value != None:
-                    response[key] = 0
+                response[key] = 0
 
         return response
 
