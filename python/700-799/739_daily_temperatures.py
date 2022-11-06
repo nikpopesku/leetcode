@@ -3,23 +3,14 @@ from typing import List
 
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        map = {}
-        response = [None] * len(temperatures)
+        response = [0] * len(temperatures)
+        stack = []
 
         for i in range(len(temperatures)):
-            elements_to_delete = []
-            for key, value in map.items():
-                if value[0] < temperatures[i]:
-                    response[key] = value[1] + 1
-                    elements_to_delete.append(key)
-                else:
-                    map[key] = [map[key][0], map[key][1] + 1]
-            for key in elements_to_delete:
-                del map[key]
-            map[i] = [temperatures[i], 0]
-
-            for key, value in map.items():
-                response[key] = 0
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                current = stack.pop(-1)
+                response[current] = i - current
+            stack.append(i)
 
         return response
 
