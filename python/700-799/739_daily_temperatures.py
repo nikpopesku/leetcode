@@ -7,13 +7,15 @@ class Solution:
         response = [None] * len(temperatures)
 
         for i in range(len(temperatures)):
+            elements_to_delete = []
             for key, value in map.items():
-                if value != None:
-                    if value[0] < temperatures[i]:
-                        response[key] = value[1] + 1
-                        map[key] = None
-                    else:
-                        map[key] = [map[key][0], map[key][1] + 1]
+                if value[0] < temperatures[i]:
+                    response[key] = value[1] + 1
+                    elements_to_delete.append(key)
+                else:
+                    map[key] = [map[key][0], map[key][1] + 1]
+            for key in elements_to_delete:
+                del map[key]
             map[i] = [temperatures[i], 0]
 
         if len(map) > 0:
