@@ -8,15 +8,18 @@ class Solution:
 
         for i in range(len(temperatures)):
             for key, value in map.items():
-                if value[0] > temperatures[i]:
-                    response[key] = value[1] + 1
-                else:
-                    map[key] = [map[key][0], map[key][1] + 1]
+                if value != None:
+                    if value[0] < temperatures[i]:
+                        response[key] = value[1] + 1
+                        map[key] = None
+                    else:
+                        map[key] = [map[key][0], map[key][1] + 1]
             map[i] = [temperatures[i], 0]
 
         if len(map) > 0:
             for key, value in map.items():
-                response[key] = 0
+                if value != None:
+                    response[key] = 0
 
         return response
 
