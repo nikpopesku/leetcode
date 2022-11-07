@@ -7,7 +7,7 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
 
-        l,k = 0, len(matrix) - 1
+        l,k = 0, len(matrix)
 
         while l < k:
             submatrix = matrix[l:k]
