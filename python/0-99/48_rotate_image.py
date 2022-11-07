@@ -11,10 +11,10 @@ class Solution:
 
         while l < k:
             for i in range(l, k - 1):
-                matrix[i][len(matrix) - 1], temp = matrix[0][i], matrix[i][len(matrix) - 1]
-                matrix[len(matrix) - 1][len(matrix) - i - 1], temp = temp, matrix[len(matrix) - 1][len(matrix) - i - 1]
-                matrix[len(matrix) - i - 1][0], temp = temp, matrix[len(matrix) - i - 1][0]
-                matrix[0][i] = temp
+                matrix[i][k - 1], temp = matrix[l][i], matrix[i][k - 1]
+                matrix[k - 1][k - i - 1], temp = temp, matrix[k - 1][k - i - 1]
+                matrix[k - i - 1][l], temp = temp, matrix[k - i - 1][l]
+                matrix[l][i] = temp
 
             l = l + 1
             k = k - 1
