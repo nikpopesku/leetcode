@@ -10,7 +10,7 @@ class Solution:
         l,k = 0, len(matrix) - 1
 
         while l < k:
-            submatrix = matrix[0:k]
+            submatrix = matrix[l:k]
 
             for i in range(len(submatrix) - 1):
                 submatrix[i][len(submatrix) - 1], temp = submatrix[0][i], submatrix[i][len(submatrix) - 1]
