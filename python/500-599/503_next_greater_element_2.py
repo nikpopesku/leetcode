@@ -4,7 +4,18 @@ from typing import List
 
 class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
-        return [([x for x in nums[i + 1:] if x > nums[i]] or [x for x in nums[:i] if x > nums[i]] or [-1])[0] for i in range(len(nums))]
+        stack, response = [], [-1] * len(nums)
+
+        for i in range(len(nums)):
+            while stack and nums[stack[-1]] < nums[i]:
+                response[stack.pop()] = nums[i]
+            stack.append(i)
+
+        for num in nums:
+            while stack and nums[stack[-1]] < num:
+                response[stack.pop()] = num
+
+        return response
 
 
 solution = Solution()
