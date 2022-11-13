@@ -4,28 +4,20 @@ from typing import List
 
 class Solution:
     def nextGreaterElement(self, n: int) -> int:
-        digits = [int(x) for x in list(str(n))]
+        number = list(str(n))
 
-        i = len(str(n)) - 1
-        while min(digits[:i + 1]) == digits[i] and i > 0:
-            i = i - 1
-
-        if i == 0:
+        if ''.join(sorted(number, reverse=True)) == str(n):
             return -1
 
-        j = i - 1
-        while digits[j:i + 1] == sorted(digits[j:i + 1], reverse=True) and j > 0:
-            j = j - 1
-        temp = sorted(digits[j:i + 1], reverse=True)
-        k = 0
-        minimum = temp
-        while minimum >= digits[j:i + 1] and k < len(temp) - 1:
-            temp = minimum
-            minimum = sorted(temp, reverse=True)[:k + 1] + sorted(temp[k + 1:])
-            k = k + 1
+        x = max(i for i in range(len(number) - 1) if number[i] < number[i+1])
+        y = max(i for i in range(x+1, len(number)) if number[i] > number[x])
 
-        elem = int(''.join(str(x) for x in digits[:j] + temp + digits[i+1:]))
-        return elem if elem <= 2 ** 31 else -1
+        number[x], number[y] = number[y], number[x]
+
+        number[x+1:len(number)] = sorted(number[x+1:len(number)])
+
+        return int(''.join(number)) if int(''.join(number)) < 2**31 else -1
+
 
 
 solution = Solution()
