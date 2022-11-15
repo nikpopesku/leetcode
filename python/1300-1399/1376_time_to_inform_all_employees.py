@@ -1,4 +1,5 @@
 from typing import List
+from collections import defaultdict
 
 
 class Solution:
@@ -11,16 +12,15 @@ class Solution:
         max_time = 0
         times = {headID: 0}
 
+        childs = defaultdict(list)
+        for idx, parent in enumerate(manager):
+            childs[parent].append(idx)
+
         while queue:
             element = queue.pop(0)
-            temp = []
-            for k, v in manager_map.items():
-                if v == element:
-                    temp.append(k)
-                    queue.append(k)
-                    times[k] = informTime[v] + times[v]
-            for l in temp:
-                del manager_map[l]
+            for k in childs[element]:
+                queue.append(k)
+                times[k] = informTime[element] + times[element]
 
 
         return max(max_time, *times.values())
