@@ -10,15 +10,17 @@ class Solution:
         manager_map = {i: manager[i] for i in range(len(manager))}
         max_time = 0
         time = (0,)
+        times = ()
 
         while last:
             last = tuple(k for k,v in manager_map.items() if v in before_last)
             if last:
-                time = tuple(informTime[manager[i]] + time[before_last.index(manager[i])] for i in last)
+                time = tuple(informTime[manager_map[i]] + time[before_last.index(manager_map[i])] for i in last)
                 before_last = last
-                max_time = max(max_time, max(time))
+                times = times + time
 
-        return max_time
+
+        return max(max_time, *times)
 
 solution = Solution()
 print(solution.numOfMinutes(n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]))
