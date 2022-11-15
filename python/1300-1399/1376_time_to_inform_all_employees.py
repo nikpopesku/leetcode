@@ -8,7 +8,6 @@ class Solution:
             return 0
 
         queue = [headID]
-        manager_map = {i: manager[i] for i in range(len(manager))}
         max_time = 0
         times = {headID: 0}
 
@@ -21,7 +20,6 @@ class Solution:
             for k in childs[element]:
                 queue.append(k)
                 times[k] = informTime[element] + times[element]
-
 
         return max(max_time, *times.values())
 
