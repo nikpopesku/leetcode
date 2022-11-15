@@ -7,14 +7,14 @@ class Solution:
             return 0
 
         before_last = last = (headID,)
+        manager_map = {i: manager[i] for i in range(len(manager))}
         max_time = 0
-        time = [0]
+        time = (0,)
 
         while last:
-            last = tuple(i for i in range(len(manager)) if manager[i] in before_last)
+            last = tuple(k for k,v in manager_map.items() if v in before_last)
             if last:
-                time = tuple(informTime[manager[i]] + time[before_last.index(manager[i])] for i in range(len(manager)) if
-                        manager[i] in before_last)
+                time = tuple(informTime[manager[i]] + time[before_last.index(manager[i])] for i in last)
                 before_last = last
                 max_time = max(max_time, max(time))
 
