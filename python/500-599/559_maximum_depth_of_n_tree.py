@@ -10,7 +10,15 @@ class Solution:
         while queue:
             elements = queue.pop(0)
             response = response + 1
-            queue.append([child for element in elements for child in element.children])
+
+            temp = []
+            for element in elements:
+                if element.children:
+                    for child in element.children:
+                        temp.append(child)
+
+            if temp:
+                queue.append(temp)
 
         return response
 
