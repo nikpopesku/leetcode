@@ -30,4 +30,4 @@ class Solution:
         return TreeNode(middle, left, right)
 
 solution = Solution()
-print(solution.matrixBlockSum(mat = [[67,64,78],[99,98,38],[82,46,46],[6,52,55],[55,99,45]], k = 3))
+print(solution.balanceBST(root = TreeNode(1, None, TreeNode(2, None, TreeNode(3, None, TreeNode(4))))))
