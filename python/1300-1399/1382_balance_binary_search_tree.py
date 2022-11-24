@@ -11,7 +11,7 @@ class Solution:
 
         while stack:
             element = stack.pop()
-            bisect.bisect_left(values, element.val)
+            bisect.insort_left(values, element.val)
 
             if element.left:
                 stack.append(element.left)
@@ -27,7 +27,7 @@ class Solution:
         left = Solution.buildTree(values[:middle]) if middle > 0 else None
         right = Solution.buildTree(values[middle + 1:]) if middle < len(values) - 1 else None
 
-        return TreeNode(middle, left, right)
+        return TreeNode(values[middle], left, right)
 
 solution = Solution()
 print(solution.balanceBST(root = TreeNode(1, None, TreeNode(2, None, TreeNode(3, None, TreeNode(4))))))
