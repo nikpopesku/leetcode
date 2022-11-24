@@ -8,31 +8,37 @@ from treenode import TreeNode
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
         response = []
-        before_last = []
-        last = Solution.findLeavesInternal(root, before_last)
+        last = Solution.findLeavesInternal(root)
 
         while last:
             response.append(last)
-            last, before_last = Solution.findLeavesInternal(root, before_last), last
+            last = Solution.findLeavesInternal(root)
 
         return response
 
     @staticmethod
-    def findLeavesInternal(root: Optional[TreeNode], before_last: List[int]) -> List:
-        stack = [root]
+    def findLeavesInternal(root: Optional[TreeNode]) -> List:
+        if not root:
+            return []
+
+        stack = [(root, None, None)]
         temp = []
 
         while stack:
-            element = stack.pop()
+            element, parent, part = stack.pop()
             pushed = False
-            if element.left and element.left.val not in before_last:
-                stack.append(element.left)
+            if element.left:
+                stack.append((element.left, element, 'left'))
                 pushed = True
-            if element.right and element.right.val not in before_last:
-                stack.append(element.right)
+            if element.right:
+                stack.append((element.right, element, 'right'))
                 pushed = True
-            if not pushed and element.val not in before_last:
+            if not pushed:
                 temp.append(element.val)
+                if part:
+                    parent.part = None
+                else:
+                    element = None
 
         return temp
 
