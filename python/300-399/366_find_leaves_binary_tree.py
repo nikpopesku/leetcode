@@ -14,7 +14,7 @@ class Solution:
             response.append(last)
             last = Solution.findLeavesInternal(root)
 
-        response.append(root.val)
+        response.append([root.val])
 
         return response
 
