@@ -14,6 +14,8 @@ class Solution:
             response.append(last)
             last = Solution.findLeavesInternal(root)
 
+        response.append(root.val)
+
         return response
 
     @staticmethod
@@ -34,11 +36,12 @@ class Solution:
                 stack.append((element.right, element, 'right'))
                 pushed = True
             if not pushed:
-                temp.append(element.val)
-                if part:
-                    parent.part = None
-                else:
-                    element = None
+                if element != root:
+                    temp.append(element.val)
+                if part == 'left':
+                    parent.left = None
+                elif part == 'right':
+                    parent.right = None
 
         return temp
 
