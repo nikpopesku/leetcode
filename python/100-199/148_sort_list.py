@@ -1,23 +1,44 @@
-from typing import Optional, List
+from typing import Optional
 from treenode import Node
+from listnode import ListNode
+
 
 class Solution:
-    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        def inner_connect(node):
-            if node and node.left:
-                node.left.next = node.right
-                inner_connect(node.left)
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
 
-            if node and node.right:
-                if node.next:
-                    node.right.next = node.next.left
-                inner_connect(node.right)
+        slow = fast = head
 
-            return node
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
 
-        return inner_connect(root)
+        slow.next = None
+
+        return Solution.merge(self.sortList(head), self.sortList(slow))
+
+    @staticmethod
+    def merge(left: Optional[ListNode], right: Optional[ListNode]):
+        if not left and not right:
+            return None
+
+        head = node = ListNode(0)
+
+        while left or right:
+            if not left:
+                right, node.next = right.next, right
+            elif not right:
+                left, node.next = left.next, left
+            else:
+                if left.val < right.val:
+                    left, node.next = left.next, left
+                else:
+                    right, node.next = right.next, right
+            node = node.next
+
+        return head.next
 
 
-r1 = Node(1, None, Node(2, Node(3)))
 solution = Solution()
-print(solution.connect(root = r1))
+print(solution.sortList(head = ListNode(4, ListNode(2, ListNode(1, ListNode(3))))))
