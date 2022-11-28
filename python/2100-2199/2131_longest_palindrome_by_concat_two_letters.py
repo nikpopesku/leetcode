@@ -13,7 +13,7 @@ class Solution:
                 counter = counter + collection_words[k] * 2
             else:
                 v2 = collection_words[k[::-1]] if k[::-1] in collection_words else 0
-                counter = counter + min(collection_words[k], v2) * 2
+                counter = counter + min(collection_words[k], v2) * 4
                 if v2:
                     del collection_words[k[::-1]]
 
