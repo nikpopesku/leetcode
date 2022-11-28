@@ -5,12 +5,14 @@ class Solution:
     def longestPalindrome(self, words: List[str]) -> int:
         collection_words = collections.Counter(words)
         counter = 0
-
+        has_impare = False
         while collection_words:
             k = list(collection_words.keys())[0]
 
             if k[0] == k[1]:
-                counter = counter + collection_words[k] * 2
+                if not has_impare:
+                    counter = counter + collection_words[k] * 2
+                    has_impare = True
             else:
                 v2 = collection_words[k[::-1]] if k[::-1] in collection_words else 0
                 counter = counter + min(collection_words[k], v2) * 4
