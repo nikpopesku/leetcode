@@ -8,15 +8,16 @@ class Solution:
         if not head or not head.next:
             return head
 
-        slow = fast = head
+        slow, fast = head, head.next
 
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
+        start = slow.next
         slow.next = None
 
-        return Solution.merge(self.sortList(head), self.sortList(slow))
+        return Solution.merge(self.sortList(head), self.sortList(start))
 
     @staticmethod
     def merge(left: Optional[ListNode], right: Optional[ListNode]):
