@@ -25,4 +25,4 @@ class Solution:
 
 r1 = TreeNode(-2, None, TreeNode(-3))
 solution = Solution()
-print(solution.hasPathSum(root = r1, targetSum = -5))
+print(solution.hasPathSum(root = TreeNode(5, TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))), TreeNode(8, TreeNode(13), TreeNode(4, TreeNode(5), TreeNode(1))))))
