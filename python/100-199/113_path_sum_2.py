@@ -6,6 +6,9 @@ class Solution:
     response = []
 
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        if not root:
+            return []
+
         stack = [(root, [])]
         response = []
 
