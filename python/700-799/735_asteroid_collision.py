@@ -14,7 +14,7 @@ class Solution:
             change = True
 
             while len(asteroids) >= 2 and change:
-                current_asteroid = asteroids[-1]
+                current_asteroid = stack[-1]
                 previous_asteroid = stack[-2]
 
                 if (previous_asteroid > 0) != (current_asteroid > 0):
