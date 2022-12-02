@@ -17,7 +17,7 @@ class Solution:
                 current_asteroid = stack[-1]
                 previous_asteroid = stack[-2]
 
-                if (previous_asteroid > 0) != (current_asteroid > 0):
+                if previous_asteroid > 0 and current_asteroid < 0:
                     change = False
 
                     if abs(previous_asteroid) < abs(current_asteroid):
@@ -34,7 +34,6 @@ class Solution:
                     change = False
 
         return stack
-
 
 
 
