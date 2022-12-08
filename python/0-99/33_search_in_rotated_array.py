@@ -29,8 +29,8 @@ class Solution:
 
         while left < right:
             middle = (right - left) // 2
-            if nums[middle] == target:
-                return middle
+            if nums[middle + left] == target:
+                return middle + left
             elif target > nums[middle]:
                 left = middle + 1
             else:
@@ -41,4 +41,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.search(nums = [4,5,6,7,0,1,2], target = 0))
+print(solution.search(nums = [4,5,6,7,0,1,2], target = 6))
