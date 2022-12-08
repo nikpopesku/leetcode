@@ -31,14 +31,14 @@ class Solution:
             middle = (right - left) // 2
             if nums[middle + left] == target:
                 return middle + left
-            elif target > nums[middle]:
-                left = middle + 1
+            elif target > nums[middle + left]:
+                left = left + middle + 1
             else:
-                right = middle - 1
+                right = left + middle - 1
 
         return left if target == nums[left] else -1
 
 
 
 solution = Solution()
-print(solution.search(nums = [4,5,6,7,0,1,2], target = 6))
+print(solution.search(nums = [4,5,6,7,0,1,2], target = 2))
