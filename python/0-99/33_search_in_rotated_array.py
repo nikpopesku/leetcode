@@ -40,4 +40,4 @@ class Solution:
 
 
 solution = Solution()
-solution.mergeTwoLists(list1 = l1, list2 = l2).print()
+print(solution.search(nums = [4,5,6,7,0,1,2], target = 0))
