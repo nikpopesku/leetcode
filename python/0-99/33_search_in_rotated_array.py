@@ -14,10 +14,10 @@ class Solution:
             else:
                 left = right
 
-        if target >= nums[0] and target <= nums[left - 1]:
+        if nums[0] <= target <= nums[left - 1]:
             return Solution.binary(nums[:left], target)
 
-        if target >= nums[left] and target <= nums[-1]:
+        if nums[left] <= target <= nums[-1]:
             return left + Solution.binary(nums[left:], target)
 
         return -1
