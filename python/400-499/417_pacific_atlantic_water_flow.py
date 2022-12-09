@@ -23,7 +23,7 @@ class Solution:
         return [element for element in list1 if element in list2]
 
     @staticmethod
-    def bfs(queue: List[int], heights: List[List[int]]):
+    def bfs(queue: List[List[int]], heights: List[List[int]]):
         counter = 0
 
         while counter < len(queue):
