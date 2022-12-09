@@ -36,7 +36,7 @@ class Solution:
                     continue
                 if [new_row, new_col] in queue:
                     continue
-                if heights[new_row][new_col] > heights[row][col]:
+                if heights[new_row][new_col] < heights[row][col]:
                     continue
 
                 queue.append([new_row, new_col])
