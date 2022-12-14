@@ -26,6 +26,10 @@ class Solution:
                     memo[target - nums[i]] = attempt
 
                     return memo[target - nums[i]]
+            elif target - nums[i] == 0:
+                memo[target] = True
+
+                return memo[target]
 
         memo[target] = False
 
