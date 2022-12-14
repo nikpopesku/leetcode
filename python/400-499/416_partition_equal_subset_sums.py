@@ -21,10 +21,13 @@ class Solution:
 
         for i in range(len(nums)):
             if target - nums[i] > 0:
-                attempt = Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo)
-                if attempt:
-                    memo[target - nums[i]] = True
+                if target - nums[i] not in memo:
+                    attempt = Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo)
+                    if attempt:
+                        memo[target - nums[i]] = True
 
+                        return memo[target - nums[i]]
+                else:
                     return memo[target - nums[i]]
             elif target - nums[i] == 0:
                 memo[target] = True
