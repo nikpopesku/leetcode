@@ -11,8 +11,9 @@ class Solution:
             return False
 
         memo = {}
+        n = len(nums)
 
-        return Solution.dfs(target // 2, nums, len(nums) - 1, memo)
+        return Solution.dfs(target // 2, nums, n - 1, memo) | Solution.dfs(target // 2 - nums[n-1], nums, n - 1, memo)
 
     @staticmethod
     def dfs(target: int, nums: List[int], n: int, memo: Dict[int, bool]) -> bool:
