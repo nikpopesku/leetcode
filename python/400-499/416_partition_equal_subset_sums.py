@@ -20,8 +20,9 @@ class Solution:
             return memo[target]
 
         for i in range(len(nums)):
-            if Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo):
-                memo[target - nums[i]] = Solution.calc(target - nums[i], nums, memo)
+            attempt = Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo)
+            if attempt:
+                memo[target - nums[i]] = attempt
 
                 return memo[target - nums[i]]
 
