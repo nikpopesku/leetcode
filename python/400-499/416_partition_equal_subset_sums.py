@@ -12,33 +12,26 @@ class Solution:
 
         memo = {}
 
-        return Solution.calc(target // 2, nums, memo)
+        return Solution.dfs(target // 2, nums, len(nums), memo)
 
     @staticmethod
-    def calc(target: int, nums: List[int], memo: Dict[int, bool]) -> bool:
+    def dfs(target: int, nums: List[int], n: int, memo: Dict[int, bool]) -> bool:
+        if target == 0:
+            return True
+
+        if n == 0:
+            return False
+
         if target in memo:
             return memo[target]
 
-        for i in range(len(nums)):
-            if target - nums[i] > 0:
-                if target - nums[i] not in memo:
-                    attempt = Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo)
-                    if attempt:
-                        memo[target - nums[i]] = True
+        memo[target] = Solution.dfs(target - nums[-1], nums[:len(nums)-1], n - 1, memo) | Solution.dfs(target, nums[:len(nums)-1], n-1, memo)
 
-                        return memo[target - nums[i]]
-                else:
-                    return memo[target - nums[i]]
-            elif target - nums[i] == 0:
-                memo[target] = True
-
-                return memo[target]
-
-        return False
+        return memo[target]
 
 
 
 
 
 solution = Solution()
-print(solution.canPartition(nums = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,99,97]))
+print(solution.canPartition(nums = [28,4,26,1,36,42,10,32,27]))
