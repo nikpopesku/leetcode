@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
@@ -21,9 +21,9 @@ class Solution:
 
         for i in range(len(nums)):
             if Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo):
-                memo[target - num] = Solution.calc(target - num, numbers, memo)
+                memo[target - nums[i]] = Solution.calc(target - nums[i], nums, memo)
 
-                return memo[target - num]
+                return memo[target - nums[i]]
 
         memo[target] = False
 
