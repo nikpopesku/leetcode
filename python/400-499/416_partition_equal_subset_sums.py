@@ -12,20 +12,20 @@ class Solution:
 
         memo = {}
 
-        return Solution.dfs(target // 2, nums, len(nums), memo)
+        return Solution.dfs(target // 2, nums, len(nums) - 1, memo)
 
     @staticmethod
     def dfs(target: int, nums: List[int], n: int, memo: Dict[int, bool]) -> bool:
         if target == 0:
             return True
 
-        if n == 0:
+        if n == 0 or target < 0:
             return False
 
         if target in memo:
             return memo[target]
 
-        memo[target] = Solution.dfs(target - nums[-1], nums[:len(nums)-1], n - 1, memo) | Solution.dfs(target, nums[:len(nums)-1], n-1, memo)
+        memo[target] = Solution.dfs(target - nums[n-1], nums, n - 1, memo) | Solution.dfs(target, nums, n - 1, memo)
 
         return memo[target]
 
