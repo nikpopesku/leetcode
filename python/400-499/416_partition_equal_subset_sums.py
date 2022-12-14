@@ -12,18 +12,16 @@ class Solution:
 
         memo = {}
 
-        count = len(nums) // 2
-
-        return Solution.calc(target // 2, nums, memo, count)
+        return Solution.calc(target // 2, nums, memo)
 
     @staticmethod
-    def calc(target: int, nums: List[int], memo: Dict[int, bool], count: int) -> bool:
+    def calc(target: int, nums: List[int], memo: Dict[int, bool]) -> bool:
         if target in memo:
             return memo[target]
 
         for i in range(len(nums)):
-            if target - nums[i] > 0 and len(nums) >= count + 1:
-                attempt = Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo, count)
+            if target - nums[i] > 0:
+                attempt = Solution.calc(target - nums[i], nums[:i] + nums[i + 1:], memo)
                 if attempt:
                     memo[target - nums[i]] = attempt
 
