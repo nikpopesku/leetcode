@@ -1,7 +1,7 @@
 from typing import List
 
 class Solution:
-    def getFactors(self, n: int)
+    def getFactors(self, n: int):
         results = set()
 
         def backtrack(target: int, limit: int, combination: List[int]):
@@ -19,7 +19,7 @@ class Solution:
 
             return results
 
-        backtrack(n, n - 1, [])
+        backtrack(n, n // 2, [])
 
         return results
 
