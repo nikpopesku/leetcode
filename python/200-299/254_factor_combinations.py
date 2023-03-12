@@ -2,21 +2,31 @@ from typing import List
 
 class Solution:
     def getFactors(self, n: int) -> List[List[int]]:
-        results = []
+        results = set()
 
         def backtrack(target: int, limit: int, combination: List[int]):
             if target == 1:
-                results.append(combination.copy())
+                sort_comb = tuple(sorted(combination))
+                if sort_comb not in results:
+                    results.add(sort_comb)
+
+            dividers = []
+            for i in range(2, limit + 1):
+                if target % i == 0:
+                    dividers.append(i)
 
             for i in range(2, limit + 1):
-                if n % i == 0:
+                if target % i == 0:
                     combination.append(i)
-                    div_res = int(n / i)
+                    div_res = int(target / i)
                     backtrack(div_res, div_res, combination)
+                    combination.pop()
 
             return results
 
-        return backtrack(n, n - 1, [])
+        backtrack(n, n - 1, [])
+
+        return results
 
 
 solution = Solution()
