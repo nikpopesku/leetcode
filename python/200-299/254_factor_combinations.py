@@ -16,7 +16,16 @@ class Solution:
                 if target % i == 0:
                     div_res = int(target / i)
                     pos = bisect_left(combination, i)
-                    backtrack(div_res, div_res, combination[:pos] + [i] + combination[pos:])
+                    new_comb = combination[:pos] + [i] + combination[pos:]
+                    exists = False
+
+                    for c in results:
+                        if c[:len(new_comb)] == tuple(new_comb):
+                            exists = True
+                            break
+
+                    if not exists:
+                        backtrack(div_res, div_res, new_comb)
 
             return results
 
