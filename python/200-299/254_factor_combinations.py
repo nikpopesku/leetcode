@@ -12,10 +12,8 @@ class Solution:
 
             for i in range(2, limit + 1):
                 if target % i == 0:
-                    combination.append(i)
                     div_res = int(target / i)
-                    backtrack(div_res, div_res, combination)
-                    combination.pop()
+                    backtrack(div_res, div_res, combination + [i])
 
             return results
 
