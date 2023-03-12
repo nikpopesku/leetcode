@@ -1,19 +1,23 @@
 from typing import List
+from bisect import insort_left
 
 class Solution:
     def getFactors(self, n: int):
+        if n == 1:
+            return []
+        
         results = set()
 
         def backtrack(target: int, limit: int, combination: List[int]):
-            if target == 1:
-                sort_comb = tuple(sorted(combination))
-                if sort_comb not in results:
-                    results.add(sort_comb)
+            if target == 1 and tuple(combination) not in results:
+                    results.add(tuple(combination))
 
             for i in range(2, limit + 1):
                 if target % i == 0:
                     div_res = int(target / i)
-                    backtrack(div_res, div_res, combination + [i])
+                    temp = list(combination)
+                    insort_left(temp, i)
+                    backtrack(div_res, div_res, temp)
 
             return results
 
