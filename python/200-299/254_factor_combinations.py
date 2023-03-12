@@ -1,11 +1,11 @@
 from typing import List
-from bisect import insort_left
+from bisect import bisect_left
 
 class Solution:
     def getFactors(self, n: int):
         if n == 1:
             return []
-        
+
         results = set()
 
         def backtrack(target: int, limit: int, combination: List[int]):
@@ -15,9 +15,8 @@ class Solution:
             for i in range(2, limit + 1):
                 if target % i == 0:
                     div_res = int(target / i)
-                    temp = list(combination)
-                    insort_left(temp, i)
-                    backtrack(div_res, div_res, temp)
+                    pos = bisect_left(combination, i)
+                    backtrack(div_res, div_res, combination[:pos] + [i] + combination[pos:])
 
             return results
 
