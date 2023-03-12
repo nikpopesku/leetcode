@@ -1,7 +1,7 @@
 from typing import List
 
 class Solution:
-    def getFactors(self, n: int) -> List[List[int]]:
+    def getFactors(self, n: int)
         results = set()
 
         def backtrack(target: int, limit: int, combination: List[int]):
@@ -9,11 +9,6 @@ class Solution:
                 sort_comb = tuple(sorted(combination))
                 if sort_comb not in results:
                     results.add(sort_comb)
-
-            dividers = []
-            for i in range(2, limit + 1):
-                if target % i == 0:
-                    dividers.append(i)
 
             for i in range(2, limit + 1):
                 if target % i == 0:
