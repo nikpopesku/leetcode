@@ -1,4 +1,3 @@
-import sys
 from typing import List
 
 class Solution:
@@ -15,4 +14,4 @@ class Solution:
         return max(length.values() or [0])
 
 solution = Solution()
-print(solution.longestIncreasingPath(list(sys.argv[1])))
+print(solution.longestIncreasingPath([[9, 9, 4], [6, 6, 8], [2, 1, 1]]))
