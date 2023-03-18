@@ -16,4 +16,4 @@ class Solution:
                     if cell == '0'] or [0])
 
 solution = Solution()
-print(solution.maxKilledEnemies([[9, 9, 4], [6, 6, 8], [2, 1, 1]]))
+print(solution.maxKilledEnemies([["0","E","0","0"],["E","0","W","E"],["0","E","0","0"]]))
