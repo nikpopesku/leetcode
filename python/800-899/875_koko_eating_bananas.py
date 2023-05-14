@@ -18,10 +18,12 @@ class Solution:
         while begin < end:
             km = (begin + end) // 2
 
-            if calit(km) == h and calit(km-1) > h:
+            current_value = calit(km)
+
+            if current_value == h and calit(km-1) > h:
                 return km
-            elif calit(km) <= h:
-                end = km + 1
+            elif current_value <= h:
+                end = km
             else:
                 begin = km
 
@@ -29,4 +31,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.minEatingSpeed( piles = [3,6,7,11], h = 8))
+print(solution.minEatingSpeed( piles = [312884470], h = 312884469))
