@@ -5,7 +5,7 @@ class Solution:
         sumit = sum(piles)
         kmin = sumit // h
 
-        begin, end = kmin, sumit
+        begin, end = kmin + (1 if sumit % h > 0 else 0), sumit
 
         def calit(k):
             response = 0
@@ -25,10 +25,10 @@ class Solution:
             elif current_value <= h:
                 end = km
             else:
-                begin = km
+                begin = km + 1
 
         return begin
 
 
 solution = Solution()
-print(solution.minEatingSpeed( piles = [312884470], h = 312884469))
+print(solution.minEatingSpeed( piles = [312884470], h = 968709470))
