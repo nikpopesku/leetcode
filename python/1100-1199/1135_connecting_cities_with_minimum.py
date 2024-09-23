@@ -28,12 +28,12 @@ class Solution:
         rootB = self.root[b]
 
         if rootA != rootB:
-            if self.rank[a] > self.rank[b]:
+            if self.rank[rootA] > self.rank[rootB]:
                 self.root[rootB] = rootA
-                self.rank[a] += 1
+                self.rank[rootA] += 1
             else:
                 self.root[rootA] = rootB
-                self.rank[b] += 1
+                self.rank[rootB] += 1
 
     def find(self, a: int):
         while a != self.root[a]:
