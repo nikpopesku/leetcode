@@ -11,21 +11,19 @@ class Solution:
         connections.sort(key=lambda x: x[-1])
         totalCost = 0
         totalConnections = 0
-        self.rank = [1 for i in range(1, n + 1)]
-        self.root = [i for i in range(1, n + 1)]
+        self.rank = [1 for i in range(n)]
+        self.root = [i for i in range(n)]
 
         for a, b, cost in connections:
-            if (self.root[a] == self.root[b]):
+            if (self.root[a-1] == self.root[b-1]):
                 continue
             totalCost += cost
-            self.union(a, b)
+            self.union(a-1, b-1)
             totalConnections += 1
 
-        return totalCost if len(connections) - 1 == totalConnections else -1
+        return totalCost if n - 1 == totalConnections else -1
 
-        return totalCost
-
-    def union(a: int, b: int):
+    def union(self, a: int, b: int):
         rootA = self.root[a]
         rootB = self.root[b]
 
@@ -37,7 +35,7 @@ class Solution:
                 self.root[rootA] = rootB
                 self.rank[b] += 1
 
-    def find(a: int):
+    def find(self, a: int):
         while a != self.root[a]:
             self.root[a] = self.root[self.root[a]]
 
@@ -47,4 +45,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.minimumCost(n = 3, connections = [[1,2,5],[1,3,6],[2,3,1]]))
+print(solution.minimumCost(n = 4, connections = [[1,2,1],[1,3,2],[3,4,4],[1,4,3]]))
