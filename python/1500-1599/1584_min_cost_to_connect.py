@@ -1,5 +1,5 @@
 from typing import List
-from functools import reduce
+from bisect import insort_left
 
 
 class Solution:
@@ -53,4 +53,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.minCostConnectPoints(arr = [[0,0],[2,2],[3,10],[5,2],[7,0]]))
+print(solution.minCostConnectPoints(points = [[0,0],[2,2],[3,10],[5,2],[7,0]]))
