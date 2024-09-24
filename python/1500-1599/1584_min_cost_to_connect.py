@@ -18,9 +18,9 @@ class Solution:
             for p2 in range(p1 + 1, len(points)):
                 x2, y2 = points[p2]
                 cost = abs(x2 - x1) + abs(y2 - y1)
-                insort_left(connections, (p1, p2, cost))
+                insort_left(connections, (cost, p1, p2))
 
-        for p1, p2, c in connections:
+        for c, p1, p2 in connections:
             if (self.find(p1) == self.find(p2)):
                 continue
 
