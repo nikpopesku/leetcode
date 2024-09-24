@@ -53,4 +53,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.minCostConnectPoints(arr = [3,5,1]))
+print(solution.minCostConnectPoints(arr = [[0,0],[2,2],[3,10],[5,2],[7,0]]))
