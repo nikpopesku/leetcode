@@ -20,8 +20,12 @@ class Solution:
             totalCost += c
             self.union(a - 1, b - 1)
 
-        totalCost += sum(
-            [min([wells[k] for k in range(len(self.root)) if self.root[k] == nw]) for nw in set(self.root)])
+        for nw in set(self.root):
+            minCost = []
+            for k in range(len(self.root)):
+                 if self.root[k] == nw:
+                    minCost.append(wells[k])
+            totalCost += min(minCost)
 
         return totalCost
 
@@ -46,4 +50,4 @@ class Solution:
         return self.root[a]
 
 solution = Solution()
-print(solution.minCostToSupplyWater(n = 3, wells = [1,2,2], pipes = [[1,2,1],[2,3,1]]))
+print(solution.minCostToSupplyWater(n = 5, wells = [46012,72474,64965,751,33304], pipes = [[2,1,6719],[3,2,75312],[5,3,44918]]))
