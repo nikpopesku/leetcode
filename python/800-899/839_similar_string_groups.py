@@ -1,6 +1,4 @@
-import sys
-from typing import Optional
-from math import ceil
+from typing import List
 
 class Solution:
     def __init__(self):
@@ -17,8 +15,9 @@ class Solution:
             rootA = self.find(i)
             for j in range(i+1, len(strs)):
                 rootB = self.find(j)
-                if (rootA != rootB and self.isSimilar(i, j)):
+                if rootA != rootB and self.isSimilar(i, j):
                     self.union(rootA, rootB)
+                    rootA = self.find(i)
 
         return len(set(self.find(a) for a in self.root))
 
@@ -49,4 +48,4 @@ class Solution:
             self.rank[rootB] += 1
 
 solution = Solution()
-print(solution.backspaceCompare( s = "ab#c", t = "ad#c"))
+print(solution.numSimilarGroups(strs=["blw","bwl","wlb"]))
