@@ -30,7 +30,7 @@ class Solution:
                     if rootA != rootB:
                         self.union(rootA, rootB)
 
-        return len(set(self.find(a) for a in self.root if graph[a])) == 2
+        return len(set(self.find(a) for a in self.root if graph[a])) % 2 == 0
 
     def union(self, rootA: int, rootB: int):
         if self.rank[rootA] > self.rank[rootB]:
@@ -49,4 +49,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.isBipartite(graph=[[4],[],[4],[4],[0,2,3]]))
+print(solution.isBipartite(graph=[[1],[0],[4],[4],[2,3]]))
