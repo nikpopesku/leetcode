@@ -13,7 +13,9 @@ class Solution:
         while pq:
             distance, node, instruction = heappop(pq)
             x, y = node
-
+            if distance > m * n:
+                return minInstruction
+            
             for instr, direction in directions.items():
                 dx, dy = direction
                 counter = 0
