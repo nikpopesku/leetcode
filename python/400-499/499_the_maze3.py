@@ -9,13 +9,12 @@ class Solution:
         pq = [(0, tuple(ball), '')]
         minDistance = float('inf')
         minInstruction = 'impossible'
+        visited = defaultdict(lambda: float('inf'))
 
         while pq:
             distance, node, instruction = heappop(pq)
             x, y = node
-            if distance > m * n:
-                return minInstruction
-            
+
             for instr, direction in directions.items():
                 dx, dy = direction
                 counter = 0
@@ -30,8 +29,9 @@ class Solution:
                         elif minDistance == distance + counter:
                             minInstruction = min(minInstruction, instruction + instr)
 
-                if counter > 0 and distance + counter < minDistance:
+                if counter > 0 and distance + counter < minDistance and visited[(nx, ny)] > distance + counter:
                     heappush(pq, (distance + counter, (nx, ny), instruction + instr))
+                    visited[(nx, ny)] = distance + counter
 
         return minInstruction
 
