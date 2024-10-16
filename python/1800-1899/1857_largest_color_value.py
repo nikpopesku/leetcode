@@ -19,7 +19,7 @@ class Solution:
             return -1
 
         maxColors = 0
-        visited = {i[0] for i in stack}
+        visited = len(stack)
 
         while stack:
             newStack = []
@@ -27,14 +27,15 @@ class Solution:
                 maxColors = max(maxColors, Counter(path).most_common(1)[0][1])
 
                 for nei in adj[elem]:
-                    if nei in visited:
-                        return -1
-                    visited.add(nei)
-                    newStack.append((nei, path + str(colors[nei])))
+                    inDegree[nei] -= 1
+
+                    if inDegree[nei] == 0:
+                        newStack.append((nei, path + str(colors[nei])))
+                        visited += 1
 
             stack = newStack
 
-        return maxColors
+        return maxColors if visited == len(colors) else -1
 
 
 
