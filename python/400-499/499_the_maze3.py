@@ -1,5 +1,6 @@
 from typing import List
 from heapq import heappop, heappush
+from collections import defaultdict
 
 
 class Solution:
@@ -29,7 +30,7 @@ class Solution:
                         elif minDistance == distance + counter:
                             minInstruction = min(minInstruction, instruction + instr)
 
-                if counter > 0 and distance + counter < minDistance and visited[(nx, ny)] > distance + counter:
+                if counter > 0 and visited[(nx, ny)] > distance + counter:
                     heappush(pq, (distance + counter, (nx, ny), instruction + instr))
                     visited[(nx, ny)] = distance + counter
 
@@ -37,4 +38,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.findShortestWay(maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [0,1]))
+print(solution.findShortestWay(maze = [[0,1,0,0,1,0,0,1,0,0],[0,0,1,0,0,1,0,0,1,0],[0,0,0,0,0,0,1,0,0,1],[0,0,0,0,0,0,1,0,0,1],[0,1,0,0,1,0,0,1,0,0],[0,0,1,0,0,1,0,0,0,0],[0,0,0,0,0,0,1,0,0,0],[1,0,0,1,0,0,0,0,0,1],[0,1,0,0,1,0,0,1,0,0],[0,0,0,0,0,1,0,0,1,0]], ball = [2,4], hole = [7,6]))
