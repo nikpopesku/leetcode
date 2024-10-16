@@ -14,6 +14,10 @@ class Solution:
             adj[e[0]].append(e[1])
 
         stack = [(i, str(colors[i])) for i in range(len(colors)) if inDegree[i] == 0]
+
+        if not stack:
+            return -1
+
         maxColors = 0
         visited = {i[0] for i in stack}
 
@@ -35,4 +39,4 @@ class Solution:
 
 
 solution = Solution()
-print(solution.largestPathValue(colors = "rrrde", edges = [[4,2],[3,4],[0,3],[1,0],[2,1]]))
+print(solution.largestPathValue(colors = "hhqhuqhqff", edges = [[0,1],[0,2],[2,3],[3,4],[3,5],[5,6],[2,7],[6,7],[7,8],[3,8],[5,8],[8,9],[3,9],[6,9]]))
