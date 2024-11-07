@@ -5,31 +5,29 @@ using namespace std;
 
 class Solution {
 public:
-    Solution () {};
-
     string mergeAlternately(string word1, string word2) {
-        int i {0}, j{0};
+        size_t i{0};
+        size_t j{0};
+        string response {};
 
-        while (i < word1.length() and j < word2.length()) {
+        while (i < word1.length() or j < word2.length()) {
             if (i < word1.length()) {
-                cout << word1[i];
+                response += word1[i];
                 i++;
             }
 
             if (j < word2.length()) {
-                cout << word2[j];
+                response += word2[j];
                 j++;
             }
         }
 
+        return response;
     }
 };
 
 
-int main()
-{
-
-
+int main() {
     auto s = Solution();
-    s.mergeAlternately("abc", "pqr");
+    cout << s.mergeAlternately("abc", "pqr") << endl;
 }
