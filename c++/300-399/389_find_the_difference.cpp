@@ -9,21 +9,21 @@ public:
     char findTheDifference(string s, string t) {
         unordered_map<char, int> map {};
 
-        for (size_t i = 0; i < s.length(); i++) {
-            if (map.find(s[i]) == map.end()) {
-                map[s[i]] = 0;
+        for (size_t i = 0; i < t.length(); i++) {
+            if (map.find(t[i]) == map.end()) {
+                map[t[i]] = 0;
             }
 
-            map[s[i]]++;
+            map[t[i]]++;
         }
 
-        for (size_t i = 0; i < t.length(); i++) {
-            if (map.find(t[i]) != map.end()) {
-                map[t[i]]--;
+        for (size_t i = 0; i < s.length(); i++) {
+            if (map.find(s[i]) != map.end()) {
+                map[s[i]]--;
             }
 
-            if (map[t[i]] == 0) {
-                map.erase(t[i]);
+            if (map[s[i]] == 0) {
+                map.erase(s[i]);
             }
         }
 
