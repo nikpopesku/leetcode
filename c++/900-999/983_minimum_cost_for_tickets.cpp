@@ -5,7 +5,7 @@ using namespace std;
 
 class Solution {
 public:
-    int mincostTickets(vector<int>& days, vector<int>& costs) {
+    int mincostTickets(const vector<int>& days, const vector<int>& costs) {
         if (days.empty()) return 0;
 
         vector a(days.begin() + 1, days.end());
@@ -49,7 +49,5 @@ public:
 
 int main() {
     auto s = Solution();
-    vector a {1,4,6,7,8,20};
-    vector b {2,7,15};
-    cout << s.mincostTickets(a, b) << endl;
+    cout << s.mincostTickets(vector<int> {1,2,3,4,5,6,7,8,9,10,30,31}, {2,7,15}) << endl;
 }
