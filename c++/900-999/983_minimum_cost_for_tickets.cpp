@@ -6,22 +6,23 @@ using namespace std;
 class Solution {
 public:
     int mincostTickets(vector<int>& days, vector<int>& costs) {
+        return calc(days, costs, 0);
+    }
+
+    int calc(vector<int>& days, vector<int>& costs, int day) {
         if (days.empty()) return 0;
 
-        vector a(days.begin() + 1, days.end());
-        int one = costs[0] + mincostTickets(a, costs);
+        int one = costs[0] + calc(days, costs, day + 1);
         int seven = costs[1];
         int thirty = costs[2];
 
 
         if (days.size() >= 7) {
-            vector b(days.begin() + 7, days.end());
-            seven += mincostTickets(b, costs);
+            seven += calc(days, costs, day + 7);
         }
 
         if (days.size() >= 30) {
-            vector c(days.begin() + 30, days.end());
-            thirty += mincostTickets(c, costs);
+            thirty += calc(days, costs, day + 30);
         }
 
         return min(min(one, seven), thirty);
