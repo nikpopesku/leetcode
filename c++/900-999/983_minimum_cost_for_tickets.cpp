@@ -6,14 +6,13 @@ using namespace std;
 class Solution {
 public:
     int mincostTickets(vector<int>& days, vector<int>& costs) {
-        int one = costs[0];
+        if (days.empty()) return 0;
+
+        vector a(days.begin() + 1, days.end());
+        int one = costs[0] + mincostTickets(a, costs);
         int seven = costs[1];
         int thirty = costs[2];
 
-        if (!days.empty()) {
-            vector a(days.begin() + 1, days.end());
-            one += mincostTickets(a, costs);
-        }
 
         if (days.size() >= 7) {
             vector b(days.begin() + 7, days.end());
