@@ -6,21 +6,24 @@ using namespace std;
 
 class Solution {
 public:
-    int mincostTickets(vector<int> days, vector<int> costs) {
+    int mincostTickets(vector<int>& days, vector<int>& costs) {
         int one = costs[0];
         int seven = costs[1];
         int thirty = costs[2];
 
         if (!days.empty()) {
-            one += mincostTickets(vector<int>(days.begin() + 1, days.end()), costs);
+            vector<int> a(days.begin() + 1, days.end());
+            one += mincostTickets(a, costs);
         }
 
         if (days.size() >= 7) {
-            seven += mincostTickets(vector<int>(days.begin() + 7, days.end()), costs);
+            vector<int> b(days.begin() + 7, days.end());
+            seven += mincostTickets(b, costs);
         }
 
         if (days.size() >= 30) {
-            thirty += mincostTickets(vector<int>(days.begin() + 30, days.end()), costs);
+            vector<int> c(days.begin() + 30, days.end());
+            thirty += mincostTickets(c, costs);
         }
 
         return min(min(one, seven), thirty);
@@ -29,5 +32,7 @@ public:
 
 int main() {
     auto s = Solution();
-    cout << s.mincostTickets(vector<int>{1,4,6,7,8,20}, vector<int>{2,7,15}) << endl;
+    vector<int> a {1,4,6,7,8,20};
+    vector<int> b {2,7,15};
+    cout << s.mincostTickets(a, b) << endl;
 }
