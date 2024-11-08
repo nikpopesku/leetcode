@@ -11,17 +11,17 @@ public:
         int thirty = costs[2];
 
         if (!days.empty()) {
-            vector<int> a(days.begin() + 1, days.end());
+            vector a(days.begin() + 1, days.end());
             one += mincostTickets(a, costs);
         }
 
         if (days.size() >= 7) {
-            vector<int> b(days.begin() + 7, days.end());
+            vector b(days.begin() + 7, days.end());
             seven += mincostTickets(b, costs);
         }
 
         if (days.size() >= 30) {
-            vector<int> c(days.begin() + 30, days.end());
+            vector c(days.begin() + 30, days.end());
             thirty += mincostTickets(c, costs);
         }
 
@@ -31,7 +31,7 @@ public:
 
 int main() {
     auto s = Solution();
-    vector<int> a {1,4,6,7,8,20};
-    vector<int> b {2,7,15};
+    vector a {1,4,6,7,8,20};
+    vector b {2,7,15};
     cout << s.mincostTickets(a, b) << endl;
 }
