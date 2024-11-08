@@ -11,7 +11,7 @@ public:
         int seven = costs[1];
         int thirty = costs[2];
 
-        if (days.size() >= 1) {
+        if (!days.empty()) {
             one += mincostTickets(vector<int>(days.begin() + 1, days.end()), costs);
         }
 
