@@ -10,11 +10,13 @@ public:
     }
 
     int calc(vector<int> &days, vector<int> &costs, int day) {
-        if (day > days.back()) return 0;
+        if (days.empty()) return 0;
 
-        int one = costs[0] + calc(days, costs, day + 1);
-        int seven = costs[1] + calc(days, costs, day + 7);
-        int thirty = costs[2] + calc(days, costs, day + 30);
+        vector<int> a{days.begin() + 1, days.end()};
+        const int one = costs[0] + calc(a, costs, day + 1);
+
+        const int seven = costs[1] + calc(days, costs, day + 7);
+        const int thirty = costs[2] + calc(days, costs, day + 30);
 
         return min(min(one, seven), thirty);
     }
