@@ -14,6 +14,15 @@ public:
         int thirty = costs[2];
 
 
+        vector<int> b {};
+
+        for (vector<int>::iterator i = 0; i < days.size(); i++) {
+            if (days[i] < days.begin() + 7) {
+                continue;
+            }
+
+            b.push_back(days[i]);
+        }
         if (days.size() >= 7) {
             vector b(days.begin() + 7, days.end());
             seven += mincostTickets(b, costs);
