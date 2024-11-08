@@ -16,20 +16,30 @@ public:
 
         vector<int> b {};
 
-        for (vector<int>::iterator i = 0; i < days.size(); i++) {
-            if (days[i] < days.begin() + 7) {
+        for (vector<int>::size_type i = 0; i < days.size(); i++) {
+            if (days[i] < days[0] + 7) {
                 continue;
             }
 
             b.push_back(days[i]);
         }
-        if (days.size() >= 7) {
-            vector b(days.begin() + 7, days.end());
+
+        if (!b.empty()) {
             seven += mincostTickets(b, costs);
         }
 
-        if (days.size() >= 30) {
-            vector c(days.begin() + 30, days.end());
+
+        vector<int> c {};
+
+        for (vector<int>::size_type i = 0; i < days.size(); i++) {
+            if (days[i] < days[0] + 30) {
+                continue;
+            }
+
+            c.push_back(days[i]);
+        }
+
+        if (!c.empty()) {
             thirty += mincostTickets(c, costs);
         }
 
