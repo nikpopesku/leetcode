@@ -15,7 +15,7 @@ public:
         for (auto i = 0; i <= m; i++) dp[i][n] = 1;
 
         for (auto i = m-1; i >= 0; i--) {
-            for (long long j = n-1; j >= 0; j--) {
+            for (auto j = n-1; j >= 0; j--) {
                 if (s[i] == t[j]) {
                     dp[i][j] = dp[i + 1][j + 1] + dp[i+1][j];
                 } else {
