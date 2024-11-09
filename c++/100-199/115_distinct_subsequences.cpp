@@ -7,16 +7,15 @@ using namespace std;
 class Solution {
 public:
     int numDistinct(const string &s, const string &t) {
-        std::vector<std::vector<int>> dp;
-        const auto m = s.size();
-        const auto n = t.size();
-        dp.resize(m + 1, std::vector(n + 1, 0));
+        const int m = s.size();
+        const int n = t.size();
+        std::vector dp (m+1, std::vector<unsigned long long>(n+1, 0));
 
-        for (auto i = 0; i <= m; i++) dp[i][n] = 0;
-        for (auto j = 0; j <= n; j++) dp[m][j] = 1;
+        for (auto j = 0; j <= n; j++) dp[m][j] = 0;
+        for (auto i = 0; i <= m; i++) dp[i][n] = 1;
 
-        for (auto i = m - 1; i >= 0; i--) {
-            for (auto j = n - 1; j >= 0; j--) {
+        for (auto i = m-1; i >= 0; i--) {
+            for (long long j = n-1; j >= 0; j--) {
                 if (s[i] == t[j]) {
                     dp[i][j] = dp[i + 1][j + 1] + dp[i+1][j];
                 } else {
