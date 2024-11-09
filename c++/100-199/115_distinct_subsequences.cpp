@@ -8,7 +8,7 @@ using namespace std;
 class Solution {
 public:
     int numDistinct(string s, string t) {
-        return 5
+        return 5;
     }
 };
 
