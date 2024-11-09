@@ -7,18 +7,22 @@ using namespace std;
 class Solution {
 public:
     int numDistinct(const string &s, const string &t) {
-        vector dp (s.size() + 1, 0);
-        dp[0] = 1;
+        std::vector<std::vector<int>> dp;
+        dp.resize(s.size() + 1, std::vector(t.size(), 0));
+        dp[0][0] = 1;
 
         for (int i = 1; i <= s.size(); i++) {
-            for (int j = 0; j < t.size(); j++) {
-                if (s[i - 1] == t[j]) {
-                    dp[i] += dp[i - 1];
-                }
-            }
+            dp[i][0] = 1;
         }
 
-        return dp[s.size()];
+        for (int j = 1; j <= t.size(); j++) dp[0][j] = 1;
+
+        for (size_t i = 1; i <= s.size(); i++) {
+            for (size_t j = 1; j < t.size(); j++)
+                dp[i][j] = dp[i - 1][j];
+        }
+
+        return dp[s.size()][t.size() - 1];
     }
 };
 
