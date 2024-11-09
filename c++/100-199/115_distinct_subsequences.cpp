@@ -6,8 +6,8 @@ using namespace std;
 
 class Solution {
 public:
-    int numDistinct(string s, string t) {
-        vector<int> dp (s.size() + 1, 0);
+    int numDistinct(const string &s, const string &t) {
+        vector dp (s.size() + 1, 0);
         dp[0] = 1;
 
         for (int i = 1; i <= s.size(); i++) {
