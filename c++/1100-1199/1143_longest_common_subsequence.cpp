@@ -19,10 +19,13 @@ private:
 
         if (s1[0] != s2[0]) {
             auto r1 = calc(s1.substr(1, s1.size() - 1), s2);
+            auto r2 = calc(s1, s2.substr(1, s2.size() - 1));
 
-            if (const auto r2 = calc(s1, s2.substr(1, s2.size() - 1)); r1.size() > r2.size()) {
+            if (r1.size() > r2.size()) {
                 return r1;
             }
+
+            return r2;
         }
 
         dp[key] = s1[0] + calc(s1.substr(1, s1.size() - 1), s2.substr(1, s2.size() - 1));
@@ -36,5 +39,5 @@ private:
 
 int main() {
     auto s = Solution();
-    cout << s.longestCommonSubsequence("abcde", "ace") << endl;
+    cout << s.longestCommonSubsequence("abc", "def") << endl;
 }
