@@ -6,13 +6,15 @@ using namespace std;
 
 class Solution {
 public:
-    string longestCommonSubsequence(string text1, string text2) {
-        vector<size_t> dp (text1.size()+1, vector<size_t>(text2.size()+1, 0));
+    string longestCommonSubsequence(const string& text1, const string& text2) {
+        vector dp (text1.size()+1, vector<size_t>(text2.size()+1, 0));
+
+        return calc(text1, text2);
     }
 private:
-    string calc(string s1, string s2) {
-        if (s1.empty() or s2.empty()) return '';
-
+    string calc(const string &s1, const string &s2) {
+        static const string empty;
+        if (s1.empty() or s2.empty()) return empty;
 
         if (s1[0] != s2[0]) {
             auto r1 = calc(s1.substr(1, s1.size() - 1), s2);
@@ -21,9 +23,9 @@ private:
             if (r1.size() > r2.size()) {
                 return r1;
             }
-
-            return r2;
         }
+
+        return s1[0] + calc(s1.substr(1, s1.size() - 1), s2.substr(1, s2.size() - 1));
     }
 };
 
