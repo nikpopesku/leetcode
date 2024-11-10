@@ -12,9 +12,9 @@ public:
     }
 private:
     string calc(const string &s1, const string &s2) {
-        static const string empty;
+        static const string empty {};
         if (s1.empty() or s2.empty()) return empty;
-        string key = to_string(s1.size()) + "_" + to_string(s2.size());
+        const string key = s1 + "_" + s2;
         if (dp.find(key) != dp.end()) return dp[key];
 
         if (s1[0] != s2[0]) {
@@ -39,5 +39,5 @@ private:
 
 int main() {
     auto s = Solution();
-    cout << s.longestCommonSubsequence("abc", "def") << endl;
+    cout << s.longestCommonSubsequence("ylqpejqbalahwr", "yrkzavgdmdgtqpg") << endl;
 }
