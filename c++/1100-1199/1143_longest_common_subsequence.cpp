@@ -7,8 +7,8 @@ using namespace std;
 
 class Solution {
 public:
-    string longestCommonSubsequence(const string& text1, const string& text2) {
-        return calc(text1, text2);
+    int longestCommonSubsequence(const string& text1, const string& text2) {
+        return calc(text1, text2).size();
     }
 private:
     string calc(const string &s1, const string &s2) {
