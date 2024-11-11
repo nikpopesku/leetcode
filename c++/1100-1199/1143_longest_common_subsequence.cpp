@@ -61,5 +61,5 @@ public:
 
 int main() {
     auto s = Solution2();
-    cout << s.longestCommonSubsequence("abc", "abc") << endl;
+    cout << s.longestCommonSubsequence("ylqpejqbalahwr", "yrkzavgdmdgtqpg") << endl;
 }
