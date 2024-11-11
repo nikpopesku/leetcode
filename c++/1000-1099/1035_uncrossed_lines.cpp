@@ -9,7 +9,7 @@ class Solution {
 public:
     int maxUncrossedLines(const vector<int> &nums1, const vector<int> &nums2) {
         vector dp(nums1.size() + 1, vector(nums2.size() + 1, 0));
-        dp[0][0] = 1;
+        dp[0][0] = 0;
 
         for (size_t i = 1; i <= nums1.size(); i++) {
             for (size_t j = 1; j <= nums2.size(); j++) {
@@ -20,6 +20,8 @@ public:
                 }
             }
         }
+
+        return dp[nums1.size()][nums2.size()];
     }
 };
 
