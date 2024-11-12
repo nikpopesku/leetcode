@@ -12,7 +12,7 @@ public:
 
         std::vector<int> squares{};
 
-        for (int i = 1; i < std::sqrt(n); i++) {
+        for (int i = 1; i <= std::sqrt(n); i++) {
             squares.push_back(i * i);
         }
 
@@ -33,5 +33,5 @@ public:
 
 int main() {
     auto s = Solution();
-    std::cout << s.numSquares(13) << std::endl;
+    std::cout << s.numSquares(4) << std::endl;
 }
