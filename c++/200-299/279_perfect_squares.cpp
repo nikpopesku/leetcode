@@ -16,7 +16,7 @@ public:
         }
 
         for (int i = 1; i < n; i++) {
-            for (auto sq: squares) {
+            for (const auto sq: squares) {
                 if (sq > n - i) {
                     break;
                 }
