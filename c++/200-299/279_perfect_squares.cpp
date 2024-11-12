@@ -29,12 +29,12 @@ public:
             i += 1;
         }
 
-        return dp[n-1];
+        return dp[n];
     }
 };
 
 
 int main() {
     auto s = Solution();
-    std::cout << s.numSquares(12) << std::endl;
+    std::cout << s.numSquares(13) << std::endl;
 }
