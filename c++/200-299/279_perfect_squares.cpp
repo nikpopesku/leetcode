@@ -19,11 +19,11 @@ public:
         int i = 2;
         while (i <= n) {
             for (const auto sq: squares) {
-                if (sq > n - i) {
+                if (sq > i) {
                     break;
                 }
 
-                dp[i] = std::min(dp[i], dp[i-sq] + sq);
+                dp[i] = std::min(dp[i], dp[i-sq] + 1);
             }
 
             i += 1;
