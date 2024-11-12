@@ -6,8 +6,9 @@
 class Solution {
 public:
     int numSquares(int n) {
-        std::vector dp (n, INT_MAX);
-        dp[0] = 1;
+        std::vector dp (n + 1, INT_MAX);
+        dp[0] = 0;
+        dp[1] = 1;
 
         std::vector<int> squares {};
 
@@ -15,14 +16,17 @@ public:
             squares.push_back(i * i);
         }
 
-        for (int i = 1; i < n; i++) {
+        int i = 2;
+        while (i <= n) {
             for (const auto sq: squares) {
                 if (sq > n - i) {
                     break;
                 }
 
-                dp[i] = std::min(dp[i], dp[i-1] + 1);
+                dp[i] = std::min(dp[i], dp[i-sq] + sq);
             }
+
+            i += 1;
         }
 
         return dp[n-1];
