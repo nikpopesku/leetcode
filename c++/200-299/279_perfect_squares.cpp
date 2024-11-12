@@ -6,11 +6,11 @@
 class Solution {
 public:
     int numSquares(const int n) {
-        std::vector dp (n + 1, INT_MAX);
+        std::vector dp(n + 1, INT_MAX);
         dp[0] = 0;
         dp[1] = 1;
 
-        std::vector<int> squares {};
+        std::vector<int> squares{};
 
         for (int i = 1; i < std::sqrt(n); i++) {
             squares.push_back(i * i);
@@ -22,7 +22,7 @@ public:
                     break;
                 }
 
-                dp[i] = std::min(dp[i], dp[i-sq] + 1);
+                dp[i] = std::min(dp[i], dp[i - sq] + 1);
             }
         }
 
