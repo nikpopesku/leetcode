@@ -15,12 +15,12 @@ public:
                 if (coins[i] > amount) {
                     dp[i][j] = dp[i+1][j];
                 } else {
-                    dp[i][j] = dp[i+1][j] + dp[amount - coins[i]][j];
+                    dp[i][j] = dp[i+1][j] + dp[i][amount - coins[i]];
                 }
             }
         }
 
-        return dp[amount][coins.size()];
+        return dp[coins.size()][amount];
     }
 };
 
