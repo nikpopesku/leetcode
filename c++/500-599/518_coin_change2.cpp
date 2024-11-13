@@ -1,22 +1,26 @@
-#include <cmath>
 #include <iostream>
 #include <vector>
 
 class Solution {
 public:
     int change(const int amount, const std::vector<int>& coins) {
-        std::vector dp(amount+1, 0);
-        dp[0] = 1;
+        std::vector dp (coins.size()+1, std::vector (amount+1, 0));
 
-        for (int i = 1; i <= amount; i++) {
-            for (auto& c: coins) {
-                if (i - c >= 0) {
-                    dp[i] += dp[i-c];
+        for (int i = 0; i <= coins.size(); i++) {
+            dp[i][0] = 1;
+        }
+
+        for (int i = coins.size(); i >= 0; i--) {
+            for (int j = 0; j <= amount; j++) {
+                if (coins[i] > amount) {
+                    dp[i][j] = dp[i+1][j];
+                } else {
+                    dp[i][j] = dp[i+1][j] + dp[amount - coins[i]][j];
                 }
             }
         }
 
-        return dp[amount];
+        return dp[amount][coins.size()];
     }
 };
 
