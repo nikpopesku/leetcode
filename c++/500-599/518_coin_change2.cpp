@@ -26,7 +26,25 @@ public:
 };
 
 
+class Solution2 {
+public:
+    int change(const int amount, const std::vector<int>& coins) {
+        std::vector<unsigned long long> dp (amount+1, 0);
+        dp[0] = 1;
+
+        for (int i = coins.size() - 1; i >= 0; i--) {
+            for (int j = 0; j <= amount; j++) {
+                if (coins[i] <= j) {
+                    dp[j] += dp[j - coins[i]];
+                }
+            }
+        }
+
+        return dp[amount];
+    }
+};
+
 int main() {
-    auto s = Solution();
-    std::cout << s.change(4, {1,2,5}) << std::endl;
+    auto s = Solution2();
+    std::cout << s.change(5, {1,2,5}) << std::endl;
 }
