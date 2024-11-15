@@ -8,13 +8,18 @@ using std::max;
 
 class Solution {
 public:
-    int findMaxForm(const vector<string> &strs, int m, int n) {
+    int findMaxForm(const vector<string> &strs, const int m, const int n) {
         vector dp(strs.size() + 1, vector(m + 1, vector(n + 1, 0)));
         int max_value = 0;
 
         for (size_t i = 0; i <= strs.size(); i++) {
-            int zeros = std::count(strs[i].begin(), strs[i].end(), '0');
-            int ones = std::count(strs[i].begin(), strs[i].end(), '1');
+            int zeros = 0;
+            int ones = 0;
+            for (const char s0 : strs[i]) {
+                if (s0 == '1') ones++;
+                if (s0 == '0') zeros++;
+            }
+
             for (int j = m; j >= 0; j--) {
                 for (int k = n; k >= 0; k--) {
                     if (j - zeros >= 0 and k - ones >= 0) {
