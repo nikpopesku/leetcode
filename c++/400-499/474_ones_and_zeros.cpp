@@ -3,26 +3,16 @@
 #include <climits>
 
 using std::vector;
+using std::string;
 
 class Solution {
 public:
-    int combinationSum4(const vector<int>& nums, int target) {
-        vector dp (target+1, 0);
-        dp[0] = 1;
+    int findMaxForm(const vector<string>& strs, int m, int n) {
 
-        for (int i = 0; i <= target; i++) {
-            for (auto& n: nums) {
-                if (i >= n) {
-                    dp[i] += dp[i-n];
-                }
-            }
-        }
-
-        return dp[target];
     }
 };
 
 int main() {
     auto s = Solution();
-    std::cout << s.combinationSum4({9}, 3) << std::endl;
+    std::cout << s.findMaxForm({"10","0001","111001","1","0"}, 5, 3) << std::endl;
 }
