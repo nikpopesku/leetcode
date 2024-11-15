@@ -10,7 +10,6 @@ class Solution {
 public:
     int findMaxForm(const vector<string> &strs, const int m, const int n) {
         vector dp(m + 1, vector(n + 1, 0));
-        int max_value = 0;
 
         for (int i = 0; i < strs.size(); i++) {
             int zeros = 0;
@@ -23,14 +22,11 @@ public:
             for (int j = m; j >= zeros; j--) {
                 for (int k = n; k >= ones; k--) {
                     dp[j][k] = max(dp[j - zeros][k - ones] + 1, dp[j][k]);
-                    if (dp[j][k] > max_value) {
-                        max_value = dp[j][k];
-                    }
                 }
             }
         }
 
-        return max_value;
+        return dp[m][n];
     }
 };
 
