@@ -1,9 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <climits>
 
-using std::vector;
-using std::string;
+using std::cout, std::endl, std::vector, std::string;
 
 class Solution {
 public:
@@ -14,5 +12,5 @@ public:
 
 int main() {
     auto s = Solution();
-    std::cout << s.findMaxForm({"10","0001","111001","1","0"}, 5, 3) << std::endl;
+    cout << s.findMaxForm({"10","0001","111001","1","0"}, 5, 3) << endl;
 }
