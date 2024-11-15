@@ -12,10 +12,10 @@ public:
         vector dp(strs.size() + 1, vector(m + 1, vector(n + 1, 0)));
         int max_value = 0;
 
-        for (int i = strs.size()-1; i >= 0; i--) {
+        for (int i = 1; i <= strs.size(); i++) {
             int zeros = 0;
             int ones = 0;
-            for (const char s0 : strs[i]) {
+            for (const char s0 : strs[i-1]) {
                 if (s0 == '1') ones++;
                 if (s0 == '0') zeros++;
             }
@@ -23,9 +23,6 @@ public:
             for (int j = m; j >= 0; j--) {
                 for (int k = n; k >= 0; k--) {
                     if (j - zeros >= 0 and k - ones >= 0) {
-                        int asdf = dp[i][j][k];
-                        int asdf2 = dp[i - 1][j][k];
-                        int asdf3 = dp[i][j - zeros][k - ones];
                         dp[i][j - zeros][k - ones] = max(dp[i][j][k] + 1, dp[i - 1][j][k]);
                         if (dp[i][j - zeros][k - ones] > max_value) {
                             max_value = dp[i][j - zeros][k - ones];
