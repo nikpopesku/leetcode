@@ -3,8 +3,8 @@
 #include <algorithm>
 
 
-using std::cout, std::endl, std::string, std::vector, std::count;
-using std::max;
+using std::cout, std::endl;
+//using std::max;
 
 struct TreeNode {
      int val;
@@ -24,5 +24,5 @@ public:
 
 int main() {
     auto s = Solution();
-    cout << s.rob({3,2,3,null,3,null,1}) << endl;
+    cout << s.rob({3,2,3,nullptr,3,nullptr,1}) << endl;
 }
