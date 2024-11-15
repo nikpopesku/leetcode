@@ -4,7 +4,6 @@
 
 
 using std::cout, std::endl;
-//using std::max;
 
 struct TreeNode {
      int val;
@@ -18,7 +17,18 @@ struct TreeNode {
 class Solution {
 public:
     int rob(TreeNode* root) {
-        return 4;
+        if (root = nullptr) return 0;
+        auto grandson_left_left = nullptr;
+        if (root.left) grandson_left_left = root.left.left;
+        auto grandson_left_right = nullptr;
+        if (root.left) grandson_left_right = root.left.right
+
+        auto grandson_right_left = nullptr;
+        if (root.right) grandson_right_left = root.right.left;
+        auto grandson_right_right = nullptr;
+        if (root.right) grandson_right_right = root.right.right
+
+        return std::max(root.val + rob(grandson_left_left) + rob(grandson_left_right) + rob(grandson_right_left) + rob(grandson_right_right), root(root.left) + rob(root.right));
     }
 };
 
