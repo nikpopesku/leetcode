@@ -8,31 +8,35 @@ using std::max;
 
 class Solution {
 public:
-    int findMaxForm(const vector<string>& strs, int m, int n) {
-        vector dp (strs.size()+1, vector (m+1, vector(n+1, 0)));
+    int findMaxForm(const vector<string> &strs, int m, int n) {
+        vector dp(strs.size() + 1, vector(m + 1, vector(n + 1, 0)));
+        int max_value = 0;
 
         for (size_t i = 0; i <= strs.size(); i++) {
             int zeros = std::count(strs[i].begin(), strs[i].end(), '0');
             int ones = std::count(strs[i].begin(), strs[i].end(), '1');
-            if (m - zeros >= 0 and n - ones >= 0) {
-                dp[i][m - zeros][n - ones] = max(dp[i][m][n] + 1, dp[i-1][m][n]);
-                m -= zeros;
-                n -= ones;
-            } else {
-                dp[i][m][n] = dp[i-1][m][n];
+            for (int j = m; j >= 0; j--) {
+                for (int k = n; k >= 0; k--) {
+                    if (j - zeros >= 0 and k - ones >= 0) {
+                        dp[i][j - zeros][k - ones] = max(dp[i][j][k] + 1, dp[i - 1][j][k]);
+                        if (dp[i][j - zeros][k - ones] > max_value) {
+                            max_value = dp[i][j - zeros][k - ones];
+                        }
+                    } else {
+                        dp[i][j][k] = dp[i - 1][j][k];
+                        if (dp[i][j][k] > max_value) {
+                            max_value = dp[i][j][k];
+                        }
+                    }
+                }
             }
-            // for (int j=0; j <= m; j++) {
-            //     for (int k =0; k <= n; k++) {
-            //
-            //     }
-            // }
         }
 
-        return 3;
+        return max_value;
     }
 };
 
 int main() {
     auto s = Solution();
-    cout << s.findMaxForm({"10","0001","111001","1","0"}, 5, 3) << endl;
+    cout << s.findMaxForm({"10", "0001", "111001", "1", "0"}, 5, 3) << endl;
 }
