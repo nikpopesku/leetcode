@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
 
 
 using std::cout, std::endl;
@@ -24,6 +24,8 @@ class Solution {
 public:
     int rob(const TreeNode *root) {
         if (root == nullptr) return 0;
+        if (memo.find(root) != memo.end()) return memo[root];
+
         TreeNode *grandson_left_left = nullptr;
         if (root->left) grandson_left_left = root->left->left;
         TreeNode *grandson_left_right = nullptr;
@@ -33,32 +35,16 @@ public:
         TreeNode *grandson_right_right = nullptr;
         if (root->right) grandson_right_right = root->right->right;
 
-        return std::max(
+        memo[root] = std::max(
             root->val + rob(grandson_left_left) + rob(grandson_left_right) + rob(grandson_right_left) + rob(
                 grandson_right_right),
             rob(root->left) + rob(root->right)
         );
-    }
-};
-class Solution2 {
-public:
-    int rob(const TreeNode *root) {
-        if (root == nullptr) return 0;
-        TreeNode *grandson_left_left = nullptr;
-        if (root->left) grandson_left_left = root->left->left;
-        TreeNode *grandson_left_right = nullptr;
-        if (root->left) grandson_left_right = root->left->right;
-        TreeNode *grandson_right_left = nullptr;
-        if (root->right) grandson_right_left = root->right->left;
-        TreeNode *grandson_right_right = nullptr;
-        if (root->right) grandson_right_right = root->right->right;
 
-        return std::max(
-            root->val + rob(grandson_left_left) + rob(grandson_left_right) + rob(grandson_right_left) + rob(
-                grandson_right_right),
-            rob(root->left) + rob(root->right)
-        );
+        return memo[root];
     }
+private:
+    std::unordered_map<const TreeNode*, int> memo;
 };
 
 int main() {
