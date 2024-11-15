@@ -22,16 +22,13 @@ public:
 
             for (int j = m; j >= 0; j--) {
                 for (int k = n; k >= 0; k--) {
-                    if (j - zeros >= 0 and k - ones >= 0) {
-                        dp[i][j - zeros][k - ones] = max(dp[i][j][k] + 1, dp[i - 1][j][k]);
-                        if (dp[i][j - zeros][k - ones] > max_value) {
-                            max_value = dp[i][j - zeros][k - ones];
-                        }
-                    } else {
-                        dp[i][j][k] = dp[i - 1][j][k];
+                    if (j + zeros <= m and k + ones <= n) {
+                        dp[i][j][k] = max(dp[i][j + zeros][k + ones] + 1, dp[i - 1][j][k]);
                         if (dp[i][j][k] > max_value) {
                             max_value = dp[i][j][k];
                         }
+                    } else {
+                        dp[i][j][k] = dp[i - 1][j][k];
                     }
                 }
             }
